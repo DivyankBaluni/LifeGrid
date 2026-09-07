@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LIFEGRID — Emergency Healthcare Coordination | SIH26133</title>
+  <meta name="description" content="AI-powered emergency healthcare coordination platform for rural and underserved areas. Digital triage, smart ambulance dispatch, hospital matching — LIFEGRID." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <!-- Leaflet Map -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <!-- Leaflet Routing Machine -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css" />
+  <script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script>
+  <!-- Three.js for 3D visualization -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <!-- FontAwesome 6.5.0 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <script>
+    // Clear old service workers & cache
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then(regs => {
+        for (let r of regs) r.unregister();
+      });
+    }
+    if ('caches' in window) {
+      caches.keys().then(keys => keys.forEach(k => caches.delete(k)));
+    }
+  </script>
+  <link rel="stylesheet" href="index.css?v=20260905_1" />
+  <!-- Loading Overlay -->
+  <div id="appLoadingOverlay" style="
+    position:fixed;top:0;left:0;width:100vw;height:100vh;
+    background:#080810;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    z-index:9999;gap:1.5rem;
+    font-family:'Space Grotesk',sans-serif;
+  ">
+    <div style="font-size:2rem;font-weight:800;color:#00d4ff;letter-spacing:.1em">LIFE<span style='color:#e63946'>GRID</span></div>
+    <div style="font-size:.9rem;color:#8891aa">Loading 30,386 hospitals across India...</div>
+    <div style="width:200px;height:4px;background:rgba(255,255,255,0.08);border-radius:2px;overflow:hidden">
+      <div id="loadBar" style="height:100%;width:0%;background:linear-gradient(90deg,#00d4ff,#e63946);border-radius:2px;transition:width .3s ease"></div>
+    </div>
+    <div id="loadStatus" style="font-size:.75rem;color:#555e7a">Initializing...</div>
+  </div>
+<body>
+
+<!-- ============================================================
+     OFFLINE BANNER
+     ============================================================ -->
+<div id="offline-banner" class="offline-banner hidden">
+  <span class="offline-icon">📡</span>
+  <span>Offline Mode — Using cached data. SMS/IVR fallback active.</span>
+  <button onclick="dismissOfflineBanner()" class="btn-icon">✕</button>
+</div>
+
+<!-- ============================================================
+     COMMAND CENTER HEADER (PAN-INDIA)
+     ============================================================ -->
+<header class="header">
+  <div class="header-brand">
+    <div class="brand-icon"><i class="fa-solid fa-truck-medical"></i></div>
+    <div>
+      <h1 class="brand-name">LIFEGRID</h1>
+      <p class="brand-tagline">Emergency Response · Pan India</p>
+    </div>
+  </div>
+
+  <div class="header-status">
+    <div class="live-tag"><span class="live-tag-dot"></span>LIVE · PAN INDIA</div>
+    <div class="system-status"><span class="status-pulse-dot"></span>System Operational</div>
+  </div>
+
+  <div class="header-stats">
+    <div class="stat-chip"><i class="fa-solid fa-circle-exclamation"></i><span class="stat-chip-val" id="statActiveVal">0</span><span class="stat-chip-label">Active</span></div>
+    <div class="stat-chip stat-chip--amber"><i class="fa-solid fa-truck-medical"></i><span class="stat-chip-val" id="statAmbVal">32</span><span class="stat-chip-label">Available</span></div>
+    <div class="stat-chip stat-chip--teal"><i class="fa-solid fa-hospital"></i><span class="stat-chip-val" id="statHospVal">10,780</span><span class="stat-chip-label">Hospitals</span></div>
+    <div class="stat-chip stat-chip--purple"><i class="fa-solid fa-list-check"></i><span class="stat-chip-val" id="statTotalVal">0</span><span class="stat-chip-label">Dispatched</span></div>
+  </div>
+
+  <div style="display:flex;align-items:center;gap:8px;margin-left:12px">
+    <select id="regionSelect" class="form-select" onchange="onRegionChange()" style="padding:6px 12px;background:rgba(30,41,59,0.9);border:1px solid rgba(148,163,184,0.3);color:#22d3ee;border-radius:8px;font-size:11.5px;font-weight:700">
+      <option value="all">🌐 Pan-India (All 32 Units)</option>
+      <option value="dehradun" selected>🏔️ Uttarakhand (Dehradun)</option>
+      <option value="mumbai">🏙️ Maharashtra (Mumbai/Pune)</option>
+      <option value="delhi">🏛️ Delhi NCR</option>
+      <option value="bengaluru">💻 Karnataka (Bengaluru)</option>
+      <option value="chennai">🌊 Tamil Nadu (Chennai)</option>
+      <option value="hyderabad">🏰 Telangana (Hyderabad)</option>
+      <option value="kolkata">🌉 West Bengal (Kolkata)</option>
+      <option value="ahmedabad">🏢 Gujarat (Ahmedabad)</option>
+      <option value="jaipur">🛕 Rajasthan (Jaipur)</option>
+      <option value="lucknow">🕌 Uttar Pradesh (Lucknow)</option>
+      <option value="bhubaneswar">🏖️ Odisha (Bhubaneswar)</option>
+      <option value="chandigarh">🌾 Punjab (Chandigarh)</option>
+      <option value="guwahati">🌿 Assam (Guwahati)</option>
+    </select>
+  </div>
+
+  <div style="display:flex;align-items:center;gap:6px;margin-left:10px">
+    <button type="button" class="btn-secondary btn-sm nav-link active" id="nav-emergency" onclick="showView('emergency')" style="padding:6px 10px;font-size:11px"><i class="fa-solid fa-tower-broadcast"></i> Command Center</button>
+    <button type="button" class="btn-secondary btn-sm nav-link" id="nav-hdash" onclick="showView('h-dashboard')" style="padding:6px 10px;font-size:11px"><i class="fa-solid fa-hospital"></i> Hospitals</button>
+    <button type="button" class="btn-secondary btn-sm nav-link" id="nav-adash" onclick="showView('a-dashboard')" style="padding:6px 10px;font-size:11px"><i class="fa-solid fa-truck-medical"></i> Ambulances</button>
+  </div>
+
+  <div class="header-right">
+    <div class="clock-block">
+      <span class="live-clock" id="liveClock">--:--:--</span>
+      <span class="clock-sub">Local Time</span>
+    </div>
+    <button type="button" class="btn-reset" id="btnReset" onclick="resetDemo()"><i class="fa-solid fa-rotate"></i> Reset Demo</button>
+  </div>
+</header>
+
+<!-- ============================================================
+     VIEW: EMERGENCY COMMAND CENTER (Main Screen)
+     ============================================================ -->
+<div id="view-emergency" class="view active view-command-center">
+  <!-- MAIN 3-PANEL GRID -->
+  <main class="main-grid">
+
+    <!-- LEFT PANEL: FORM -->
+    <aside class="panel panel-form">
+      <div class="panel-header">
+        <i class="fa-solid fa-circle-exclamation panel-icon"></i>
+        <h2>Report Emergency</h2>
+      </div>
+
+      <!-- Location -->
+      <div class="form-section">
+        <label class="section-label"><i class="fa-solid fa-location-dot"></i> Incident Location</label>
+        <p class="hint">Click on map to pin anywhere in India, or enter coordinates</p>
+        <div class="coord-row">
+          <div class="input-group">
+            <label for="inpLat">Latitude</label>
+            <input type="number" id="inpLat" placeholder="30.3398" step="0.0001" value="30.3398" />
+          </div>
+          <div class="input-group">
+            <label for="inpLon">Longitude</label>
+            <input type="number" id="inpLon" placeholder="78.0644" step="0.0001" value="78.0644" />
+          </div>
+        </div>
+        <div style="display:flex;gap:6px">
+          <button type="button" class="btn-secondary btn-sm" id="btnGPS" onclick="getGPS()"><i class="fa-solid fa-crosshairs"></i> Use My GPS</button>
+          <button type="button" class="btn-secondary btn-sm" onclick="setDehradunCenter()"><i class="fa-solid fa-map-pin"></i> Dehradun Center</button>
+        </div>
+      </div>
+
+      <!-- Victims -->
+      <div class="form-section">
+        <label class="section-label"><i class="fa-solid fa-person-falling-burst"></i> Victims</label>
+        <div class="coord-row">
+          <div class="input-group">
+            <label for="inpVictims">Total Injured</label>
+            <input type="number" id="inpVictims" value="1" min="1" max="50" oninput="updateSeverityPreview()" />
+          </div>
+          <div class="input-group">
+            <label for="inpUnconscious">Unconscious</label>
+            <input type="number" id="inpUnconscious" value="0" min="0" max="50" oninput="updateSeverityPreview()" />
+          </div>
+        </div>
+        <div class="coord-row">
+          <div class="input-group">
+            <label for="inpOldest">Oldest Age</label>
+            <input type="number" id="inpOldest" placeholder="e.g. 65" min="0" max="120" oninput="updateSeverityPreview()" />
+          </div>
+          <div class="input-group">
+            <label for="inpYoungest">Youngest Age</label>
+            <input type="number" id="inpYoungest" placeholder="e.g. 4" min="0" max="120" oninput="updateSeverityPreview()" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Incident Type (Multi-Select) -->
+      <div class="form-section">
+        <label class="section-label"><i class="fa-solid fa-car-burst"></i> Incident Type <span class="hint-tag">Multi-select</span></label>
+        <div class="type-grid">
+          <label class="type-btn type-btn--active"><input type="checkbox" name="accType" value="road" checked onchange="onTypeToggle(this)" /><i class="fa-solid fa-car-burst"></i><span>Road</span></label>
+          <label class="type-btn"><input type="checkbox" name="accType" value="fall" onchange="onTypeToggle(this)" /><i class="fa-solid fa-person-falling"></i><span>Fall</span></label>
+          <label class="type-btn"><input type="checkbox" name="accType" value="cardiac" onchange="onTypeToggle(this)" /><i class="fa-solid fa-heart-pulse"></i><span>Cardiac</span></label>
+          <label class="type-btn"><input type="checkbox" name="accType" value="burn" onchange="onTypeToggle(this)" /><i class="fa-solid fa-fire"></i><span>Burn</span></label>
+          <label class="type-btn"><input type="checkbox" name="accType" value="neuro" onchange="onTypeToggle(this)" /><i class="fa-solid fa-brain"></i><span>Neuro</span></label>
+          <label class="type-btn"><input type="checkbox" name="accType" value="breathing" onchange="onTypeToggle(this)" /><i class="fa-solid fa-lungs"></i><span>Breathing</span></label>
+          <label class="type-btn"><input type="checkbox" name="accType" value="poisoning" onchange="onTypeToggle(this)" /><i class="fa-solid fa-skull-crossbones"></i><span>Poisoning</span></label>
+          <label class="type-btn"><input type="checkbox" name="accType" value="electrical" onchange="onTypeToggle(this)" /><i class="fa-solid fa-bolt"></i><span>Electrical</span></label>
+          <label class="type-btn"><input type="checkbox" name="accType" value="industrial" onchange="onTypeToggle(this)" /><i class="fa-solid fa-industry"></i><span>Industrial</span></label>
+          <label class="type-btn"><input type="checkbox" name="accType" value="drowning" onchange="onTypeToggle(this)" /><i class="fa-solid fa-water"></i><span>Drowning</span></label>
+          <label class="type-btn"><input type="checkbox" name="accType" value="pediatric" onchange="onTypeToggle(this)" /><i class="fa-solid fa-child"></i><span>Pediatric</span></label>
+          <label class="type-btn"><input type="checkbox" name="accType" value="other" onchange="onTypeToggle(this)" /><i class="fa-solid fa-kit-medical"></i><span>Other</span></label>
+        </div>
+      </div>
+
+      <!-- Emergency Indicators (Grouped) -->
+      <div class="form-section">
+        <label class="section-label"><i class="fa-solid fa-triangle-exclamation"></i> Emergency Indicators</label>
+
+        <div class="flag-group-title"><i class="fa-solid fa-user-doctor"></i> Patient Condition</div>
+        <label class="checkbox-row">
+          <input type="checkbox" id="chkBleeding" onchange="updateSeverityPreview()" /><span class="checkbox-custom"></span><span>Severe Bleeding</span>
+        </label>
+        <label class="checkbox-row">
+          <input type="checkbox" id="chkBreathing" onchange="updateSeverityPreview()" /><span class="checkbox-custom"></span><span>Breathing Difficulty</span>
+        </label>
+        <label class="checkbox-row">
+          <input type="checkbox" id="chkFracture" onchange="updateSeverityPreview()" /><span class="checkbox-custom"></span><span>Suspected Fracture</span>
+        </label>
+        <label class="checkbox-row">
+          <input type="checkbox" id="chkSpine" onchange="updateSeverityPreview()" /><span class="checkbox-custom"></span><span>Spine / Neck Injury</span>
+        </label>
+
+        <div class="flag-group-title"><i class="fa-solid fa-shield-cat"></i> Scene Hazards</div>
+        <label class="checkbox-row">
+          <input type="checkbox" id="chkTrapped" onchange="updateSeverityPreview()" /><span class="checkbox-custom"></span><span>Patient Trapped</span>
+        </label>
+        <label class="checkbox-row">
+          <input type="checkbox" id="chkFire" onchange="updateSeverityPreview()" /><span class="checkbox-custom"></span><span>Fire / Explosion</span>
+        </label>
+        <label class="checkbox-row">
+          <input type="checkbox" id="chkHazmat" onchange="updateSeverityPreview()" /><span class="checkbox-custom"></span><span>Hazardous Material</span>
+        </label>
+        <label class="checkbox-row">
+          <input type="checkbox" id="chkRoad" onchange="updateSeverityPreview()" /><span class="checkbox-custom"></span><span>Road Blocked</span>
+        </label>
+        <label class="checkbox-row">
+          <input type="checkbox" id="chkUnsafe" onchange="updateSeverityPreview()" /><span class="checkbox-custom"></span><span>Unsafe / Violent Scene</span>
+        </label>
+
+        <div class="flag-group-title"><i class="fa-solid fa-circle-nodes"></i> Special Context</div>
+        <label class="checkbox-row">
+          <input type="checkbox" id="chkMultiCasualty" onchange="updateSeverityPreview()" /><span class="checkbox-custom"></span><span>Multiple Casualties</span>
+        </label>
+        <label class="checkbox-row">
+          <input type="checkbox" id="chkChild" onchange="updateSeverityPreview()" /><span class="checkbox-custom"></span><span>Child Involved</span>
+        </label>
+        <label class="checkbox-row">
+          <input type="checkbox" id="chkPregnancy" onchange="updateSeverityPreview()" /><span class="checkbox-custom"></span><span>Pregnancy Emergency</span>
+        </label>
+      </div>
+
+      <!-- Notes -->
+      <div class="form-section">
+        <label class="section-label"><i class="fa-solid fa-note-sticky"></i> Notes / Description</label>
+        <textarea id="inpNotes" placeholder="e.g. Near clock tower, severe trauma victim..." rows="2"></textarea>
+      </div>
+
+      <!-- Severity Preview -->
+      <div class="severity-preview">
+        <div class="sev-label">Estimated Priority</div>
+        <div class="sev-headline">
+          <span class="sev-word sev-low" id="sevWord">LOW</span>
+          <span class="sev-score" id="sevScore">22</span>
+        </div>
+        <div class="sev-bar-track">
+          <div class="sev-bar" id="sevBar" style="width:22%"></div>
+        </div>
+      </div>
+
+      <button type="button" class="btn-dispatch" id="btnDispatch" onclick="triggerSmartDispatch()">
+        <span class="btn-dispatch-icon"><i class="fa-solid fa-truck-medical"></i></span>
+        <span class="btn-dispatch-text">
+          <span class="btn-dispatch-title" id="btnDispatchTitle">Dispatch Ambulance</span>
+          <span class="btn-dispatch-sub" id="btnDispatchSub">Find best available unit via road</span>
+        </span>
+      </button>
+    </aside>
+
+    <!-- CENTER: MAP -->
+    <section class="map-container">
+      <div id="map"></div>
+
+      <!-- ETA Live Counter (appears during dispatch) -->
+      <div class="eta-counter hidden" id="etaCounter">
+        <div class="eta-phase-block"><span class="eta-live-dot"></span>
+          <div class="eta-phase" id="etaPhaseLabel">En Route to Scene</div>
+        </div>
+        <div class="eta-divider"></div>
+        <div class="eta-time-block">
+          <div class="eta-time" id="etaTimeDisplay">0:00</div>
+          <div class="eta-time-label">ETA</div>
+        </div>
+        <div class="eta-divider"></div>
+        <div class="eta-road-info" id="etaRoadInfo">Calculating route…</div>
+      </div>
+
+      <div class="map-legend">
+        <div class="legend-item"><span class="legend-dot legend-amb-available"></span>Available</div>
+        <div class="legend-item"><span class="legend-dot legend-amb-busy"></span>On Duty</div>
+        <div class="legend-item"><span class="legend-dot legend-hosp-trauma"></span>Trauma Hospital</div>
+        <div class="legend-item"><span class="legend-dot legend-hosp-general"></span>General Hospital</div>
+        <div class="legend-item"><span class="legend-dot legend-incident"></span>Incident</div>
+      </div>
+      <div class="map-hint" id="mapHint">
+        <i class="fa-solid fa-hand-pointer"></i> Click map to set incident location
+      </div>
+    </section>
+
+    <!-- RIGHT PANEL: RESULT -->
+    <aside class="panel panel-result">
+      <div class="panel-header">
+        <i class="fa-solid fa-bolt panel-icon panel-icon--result"></i>
+        <h2>Dispatch Result</h2>
+      </div>
+
+      <div class="result-placeholder" id="resultPlaceholder">
+        <div class="placeholder-icon"><i class="fa-solid fa-satellite-dish"></i></div>
+        <p>Awaiting emergency report…</p>
+        <p class="placeholder-sub">Select type (Cardiac, Burn, Road...), click map, and click Dispatch</p>
+      </div>
+
+      <div class="result-content hidden" id="resultContent">
+        <div class="result-severity">
+          <div class="sev-badge" id="sevBadge">MODERATE</div>
+          <div class="sev-details">
+            <div class="sev-score-big" id="sevScoreBig">45</div>
+            <div class="sev-label-sm">Severity Score</div>
+          </div>
+        </div>
+
+        <!-- Ambulance card -->
+        <div class="dispatch-card">
+          <div class="card-header-row">
+            <div class="card-icon card-icon--amb"><i class="fa-solid fa-truck-medical"></i></div>
+            <div>
+              <div class="card-title">Dispatched Ambulance</div>
+              <div class="card-code" id="ambCode">–</div>
+            </div>
+            <div class="card-eta">
+              <div class="eta-val" id="ambEta">–</div>
+              <div class="eta-unit">min to scene</div>
+            </div>
+          </div>
+          <div class="card-details">
+            <div class="detail-chip" id="ambEquip">–</div>
+            <div class="detail-chip" id="ambVent">–</div>
+            <div class="detail-chip" id="ambDist">–</div>
+            <div class="detail-chip chip-road" id="ambRoadInfo">📡 Calculating…</div>
+          </div>
+        </div>
+
+        <!-- Why this unit -->
+        <div class="why-block">
+          <div class="why-block-title"><i class="fa-solid fa-circle-question"></i> Why This Unit?</div>
+          <div class="why-chips" id="whyChips"></div>
+        </div>
+
+        <!-- Hospital card -->
+        <div class="dispatch-card">
+          <div class="card-header-row">
+            <div class="card-icon card-icon--hosp"><i class="fa-solid fa-hospital"></i></div>
+            <div class="card-hosp-name">
+              <div class="card-title">Assigned Hospital</div>
+              <div class="card-code" id="hospName">–</div>
+            </div>
+            <div class="card-eta">
+              <div class="eta-val" id="hospEta">–</div>
+              <div class="eta-unit">min total</div>
+            </div>
+          </div>
+          <div class="card-details">
+            <div class="detail-chip" id="hospTrauma">–</div>
+            <div class="detail-chip" id="hospIcu">–</div>
+            <div class="detail-chip" id="hospDist">–</div>
+            <div class="detail-chip chip-road" id="hospRoadInfo">📡 Calculating…</div>
+          </div>
+          <div class="specialists-row" id="hospSpec"></div>
+        </div>
+
+        <!-- Dispatch logic -->
+        <div class="result-section-label">Dispatch Logic</div>
+        <div class="decision-logic">
+          <div class="decision-col">
+            <div class="decision-col-title"><i class="fa-solid fa-truck-medical"></i> Ambulance</div>
+            <div class="decision-list" id="decisionAmb"></div>
+          </div>
+          <div class="decision-col">
+            <div class="decision-col-title"><i class="fa-solid fa-hospital"></i> Hospital</div>
+            <div class="decision-list" id="decisionHosp"></div>
+          </div>
+        </div>
+
+        <!-- Timeline -->
+        <div class="timeline">
+          <div class="tl-item tl-done" id="tl1">
+            <div class="tl-dot"></div>
+            <div class="tl-text">Incident Reported</div>
+            <div class="tl-time" id="tl1Time">–</div>
+          </div>
+          <div class="tl-item" id="tl2">
+            <div class="tl-dot"></div>
+            <div class="tl-text">Ambulance Dispatched</div>
+            <div class="tl-time" id="tl2Time">–</div>
+          </div>
+          <div class="tl-item" id="tl3">
+            <div class="tl-dot"></div>
+            <div class="tl-text">Arrived at Scene</div>
+            <div class="tl-time" id="tl3Time">–</div>
+          </div>
+          <div class="tl-item" id="tl4">
+            <div class="tl-dot"></div>
+            <div class="tl-text">Delivered to Hospital</div>
+            <div class="tl-time" id="tl4Time">–</div>
+          </div>
+        </div>
+
+        <div class="incident-id-row">Incident ID: <span class="incident-id-val" id="incidentId">–</span></div>
+      </div>
+    </aside>
+  </main>
+
+  <!-- INCIDENT LOG -->
+  <section class="log-section">
+    <div class="log-header">
+      <h2><i class="fa-solid fa-table-list"></i> Incident Log</h2>
+      <div class="log-actions">
+        <span class="log-refresh-hint"><i class="fa-solid fa-sync"></i> Real-time road dispatch feed</span>
+        <button type="button" class="btn-secondary btn-sm" id="btnRefreshLog" onclick="renderIncidentLog()"><i class="fa-solid fa-rotate-right"></i> Refresh</button>
+      </div>
+    </div>
+    <div class="table-wrap">
+      <table class="log-table">
+        <thead>
+          <tr>
+            <th>#ID</th>
+            <th>Time</th>
+            <th>Location</th>
+            <th>Type</th>
+            <th>Victims</th>
+            <th>Severity</th>
+            <th>Ambulance</th>
+            <th>Hospital</th>
+            <th>ETA</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="logBody">
+          <tr>
+            <td colspan="11" class="empty-log">No incidents reported yet. Select emergency type, click map and dispatch.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</div>
+
+<div class="loading-overlay hidden" id="loadingOverlay">
+  <div class="loading-box">
+    <div class="spinner"></div>
+    <p id="loadingMsg">Dispatching emergency units…</p>
+  </div>
+</div>
+
+<!-- ============================================================
+     VIEW: HOSPITAL DASHBOARD
+     ============================================================ -->
+<div id="view-h-dashboard" class="view hidden">
+  <!-- Login Screen -->
+  <div id="hDashLogin" class="login-wrapper">
+    <div class="login-card">
+      <div class="login-icon">🏥</div>
+      <h2>Hospital Dashboard Login</h2>
+      <p>Enter your hospital credentials to access the live dashboard</p>
+      <div class="form-group">
+        <label class="form-label">Hospital ID</label>
+        <input type="text" id="hLoginId" class="form-input" placeholder="e.g. H15780" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Password</label>
+        <input type="password" id="hLoginPass" class="form-input" placeholder="Your hospital password" />
+      </div>
+      <button class="btn-dispatch" style="margin-top:1rem" onclick="loginHospital()">Login to Dashboard</button>
+      <p class="login-hint">Demo: ID = H15780 / Password = hosp15780</p>
+      <p class="login-hint">Or try any registered hospital. For demo, use any H-ID and matching password format.</p>
+    </div>
+  </div>
+  <!-- Dashboard Content -->
+  <div id="hDashContent" class="hidden">
+    <div class="dash-topbar">
+      <div>
+        <h2 id="dashHospitalName">Hospital Name</h2>
+        <p id="dashHospitalLoc" style="color:var(--text-muted)">Location</p>
+      </div>
+      <div class="dash-topbar-right">
+        <div class="live-indicator"><span class="live-dot"></span>LIVE</div>
+        <button class="btn-secondary" onclick="logoutHospital()">Logout</button>
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- Bed Stats -->
+      <div class="dash-stats-grid">
+        <div class="dash-stat-card green">
+          <div class="dsc-icon">🛏️</div>
+          <div class="dsc-val" id="dscAvailBeds">-</div>
+          <div class="dsc-label">Available Beds</div>
+        </div>
+        <div class="dash-stat-card red">
+          <div class="dsc-icon">⛔</div>
+          <div class="dsc-val" id="dscOccupied">-</div>
+          <div class="dsc-label">Occupied Beds</div>
+        </div>
+        <div class="dash-stat-card purple">
+          <div class="dsc-icon">🏥</div>
+          <div class="dsc-val" id="dscICU">-</div>
+          <div class="dsc-label">ICU Available</div>
+        </div>
+        <div class="dash-stat-card blue">
+          <div class="dsc-icon">👨‍⚕️</div>
+          <div class="dsc-val" id="dscDoctors">-</div>
+          <div class="dsc-label">Doctors On Duty</div>
+        </div>
+      </div>
+
+      <!-- Incoming Emergency Alerts -->
+      <div class="section-card">
+        <h3 class="section-card-title">🚨 Incoming Emergency Alerts</h3>
+        <div id="incomingAlerts" class="alerts-list">
+          <div class="empty-state">No incoming emergencies at this time</div>
+        </div>
+      </div>
+
+      <!-- Bed Management -->
+      <div class="section-card">
+        <h3 class="section-card-title">🛏️ Bed Status Management</h3>
+        <div id="bedManagement" class="bed-grid"></div>
+      </div>
+
+      <!-- Specialties & Facilities -->
+      <div class="section-card">
+        <h3 class="section-card-title">⚕️ Specialties & Facilities</h3>
+        <div id="specFacilities" class="tag-cloud"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     VIEW: AMBULANCE DASHBOARD
+     ============================================================ -->
+<div id="view-a-dashboard" class="view hidden">
+  <div id="aDashLogin" class="login-wrapper">
+    <div class="login-card">
+      <div class="login-icon">🚑</div>
+      <h2>Ambulance Dashboard Login</h2>
+      <p>Enter your ambulance unit credentials</p>
+      <div class="form-group">
+        <label class="form-label">Ambulance ID</label>
+        <input type="text" id="aLoginId" class="form-input" placeholder="e.g. AMB001" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Password</label>
+        <input type="password" id="aLoginPass" class="form-input" placeholder="Your ambulance password" />
+      </div>
+      <button class="btn-dispatch" style="margin-top:1rem" onclick="loginAmbulance()">Login to Dashboard</button>
+      <p class="login-hint">Demo: ID = AMB001 / Password = amb001pass</p>
+    </div>
+  </div>
+  <div id="aDashContent" class="hidden">
+    <div class="dash-topbar">
+      <div>
+        <h2 id="aDashName">Ambulance Unit</h2>
+        <p id="aDashType" style="color:var(--text-muted)">Type</p>
+      </div>
+      <div class="dash-topbar-right">
+        <div class="live-indicator"><span class="live-dot"></span>LIVE</div>
+        <button class="btn-secondary" onclick="logoutAmbulance()">Logout</button>
+      </div>
+    </div>
+    <div class="container">
+      <div class="dash-stats-grid">
+        <div class="dash-stat-card blue">
+          <div class="dsc-icon">🚑</div>
+          <div class="dsc-val" id="aDscStatus">-</div>
+          <div class="dsc-label">Status</div>
+        </div>
+        <div class="dash-stat-card green">
+          <div class="dsc-icon">👥</div>
+          <div class="dsc-val" id="aDscCap">-</div>
+          <div class="dsc-label">Capacity</div>
+        </div>
+        <div class="dash-stat-card purple">
+          <div class="dsc-icon">📍</div>
+          <div class="dsc-val" id="aDscDistrict">-</div>
+          <div class="dsc-label">District</div>
+        </div>
+        <div class="dash-stat-card orange">
+          <div class="dsc-icon">🔧</div>
+          <div class="dsc-val" id="aDscLastService">-</div>
+          <div class="dsc-label">Last Service</div>
+        </div>
+      </div>
+      <div class="section-card">
+        <h3 class="section-card-title">📦 Equipment Inventory</h3>
+        <div id="aEquipList" class="equip-grid"></div>
+      </div>
+      <div class="section-card">
+        <h3 class="section-card-title">🎯 Current Mission</h3>
+        <div id="aMission" class="mission-panel">
+          <div class="empty-state">No active mission assigned</div>
+        </div>
+      </div>
+      <div style="text-align:center; margin-top:1.5rem">
+        <button class="btn-dispatch" onclick="open3DViewer(currentAmbulanceId)">
+          <span>🚑</span> View 3D Ambulance Model
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     VIEW: HOSPITAL REGISTRATION
+     ============================================================ -->
+<div id="view-h-register" class="view hidden">
+  <div class="view-header">
+    <h1>🏥 Hospital Registration Portal</h1>
+    <p>Register your healthcare facility with LIFEGRID</p>
+  </div>
+  <div class="container">
+    <div class="reg-card">
+      <form id="hospitalRegForm" onsubmit="submitHospitalReg(event)">
+        <div class="reg-section">
+          <h3>Basic Information</h3>
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label">Hospital Name *</label>
+              <input type="text" name="name" class="form-input" required placeholder="Full hospital name" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Hospital Category *</label>
+              <select name="category" class="form-select" required>
+                <option value="">Select...</option>
+                <option>Public / Government</option>
+                <option>Private</option>
+                <option>Trust / Charitable</option>
+                <option>Mission / NGO</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Registration Number *</label>
+              <input type="text" name="reg_num" class="form-input" required placeholder="Government registration number" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Established Year</label>
+              <input type="number" name="established" class="form-input" min="1800" max="2026" placeholder="YYYY" />
+            </div>
+          </div>
+        </div>
+
+        <div class="reg-section">
+          <h3>Location Details</h3>
+          <div class="form-grid">
+            <div class="form-group form-full">
+              <label class="form-label">Full Address *</label>
+              <input type="text" name="address" class="form-input" required placeholder="Street address, area..." />
+            </div>
+            <div class="form-group">
+              <label class="form-label">District *</label>
+              <select name="district" class="form-select" id="regDistrictSelect" required>
+                <option value="">Select District...</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Taluka / Subdistrict</label>
+              <input type="text" name="subdistrict" class="form-input" placeholder="Taluka name" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Pincode *</label>
+              <input type="text" name="pincode" class="form-input" required placeholder="6-digit pincode" maxlength="6" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">GPS Coordinates</label>
+              <div class="gps-row">
+                <input type="text" name="coordinates" id="regGPS" class="form-input" placeholder="Lat, Lng" />
+                <button type="button" class="btn-gps" onclick="getRegGPS()">📍</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="reg-section">
+          <h3>Contact Information</h3>
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label">Main Phone *</label>
+              <input type="tel" name="phone" class="form-input" required placeholder="Telephone number" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Mobile Number</label>
+              <input type="tel" name="mobile" class="form-input" placeholder="Mobile number" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Emergency Number</label>
+              <input type="tel" name="emergency_num" class="form-input" placeholder="24/7 emergency line" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Email Address *</label>
+              <input type="email" name="email" class="form-input" required placeholder="hospital@email.com" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Website</label>
+              <input type="url" name="website" class="form-input" placeholder="https://..." />
+            </div>
+          </div>
+        </div>
+
+        <div class="reg-section">
+          <h3>Capacity & Services</h3>
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label">Total Beds *</label>
+              <input type="number" name="total_beds" class="form-input" required min="1" placeholder="Number of beds" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">ICU Beds</label>
+              <input type="number" name="icu_beds" class="form-input" min="0" placeholder="ICU beds" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Number of Doctors</label>
+              <input type="number" name="doctors" class="form-input" min="0" placeholder="Full-time doctors" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Accreditation</label>
+              <input type="text" name="accreditation" class="form-input" placeholder="NABH, JCI, etc." />
+            </div>
+          </div>
+          <div class="form-group form-full">
+            <label class="form-label">Specialties Available</label>
+            <div class="spec-checkboxes" id="specCheckboxes"></div>
+          </div>
+          <div class="form-group form-full">
+            <label class="form-label">Facilities</label>
+            <div class="spec-checkboxes" id="facCheckboxes"></div>
+          </div>
+        </div>
+
+        <div class="reg-section">
+          <h3>Nodal Contact Person</h3>
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label">Name *</label>
+              <input type="text" name="nodal_name" class="form-input" required placeholder="Contact person name" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Designation</label>
+              <input type="text" name="nodal_designation" class="form-input" placeholder="Dr., Administrator..." />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Phone *</label>
+              <input type="tel" name="nodal_phone" class="form-input" required placeholder="Contact phone" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Email</label>
+              <input type="email" name="nodal_email" class="form-input" placeholder="nodal@hospital.com" />
+            </div>
+          </div>
+        </div>
+
+        <div class="reg-section">
+          <h3>Login Credentials</h3>
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label">Dashboard Password *</label>
+              <input type="password" name="password" class="form-input" required placeholder="Create a secure password" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Confirm Password *</label>
+              <input type="password" name="confirm_password" class="form-input" required placeholder="Re-enter password" />
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-dispatch" style="width:100%; margin-top:1rem">
+          <span>🏥</span> Register Hospital with LIFEGRID
+        </button>
+      </form>
+    </div>
+    <!-- Registered Hospitals List -->
+    <div class="section-card" style="margin-top:2rem">
+      <h3 class="section-card-title">📋 Recently Registered Hospitals</h3>
+      <div id="registeredHospitals" class="reg-list"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     VIEW: AMBULANCE REGISTRATION
+     ============================================================ -->
+<div id="view-a-register" class="view hidden">
+  <div class="view-header">
+    <h1>🚑 Ambulance Registration Portal</h1>
+    <p>Register your ambulance unit with the LIFEGRID dispatch network</p>
+  </div>
+  <div class="container">
+    <div class="reg-card">
+      <form id="ambulanceRegForm" onsubmit="submitAmbulanceReg(event)">
+        <div class="reg-section">
+          <h3>Vehicle Details</h3>
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label">Vehicle Name / Call Sign *</label>
+              <input type="text" name="name" class="form-input" required placeholder="e.g. Alpha-21" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Ambulance Type *</label>
+              <select name="type" class="form-select" required>
+                <option value="">Select...</option>
+                <option value="BLS">BLS — Basic Life Support</option>
+                <option value="ALS">ALS — Advanced Life Support</option>
+                <option value="MICU">MICU — Mobile ICU</option>
+                <option value="NEO">Neonatal Ambulance</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Vehicle Model *</label>
+              <input type="text" name="model" class="form-input" required placeholder="e.g. Force Traveller Medical" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Year of Manufacture</label>
+              <input type="number" name="year" class="form-input" min="2000" max="2026" placeholder="YYYY" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">License Plate *</label>
+              <input type="text" name="license_plate" class="form-input" required placeholder="MH-XX-XX-0000" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Patient Capacity *</label>
+              <input type="number" name="capacity" class="form-input" required min="1" max="6" placeholder="Max patients" />
+            </div>
+          </div>
+        </div>
+
+        <div class="reg-section">
+          <h3>Crew Details</h3>
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label">Driver Name *</label>
+              <input type="text" name="driver" class="form-input" required placeholder="Driver full name" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Driver Phone *</label>
+              <input type="tel" name="driver_phone" class="form-input" required placeholder="+91-XXXXXXXXXX" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Paramedic / Doctor *</label>
+              <input type="text" name="paramedic" class="form-input" required placeholder="Paramedic/Doctor name" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Home District *</label>
+              <select name="district" class="form-select" id="aRegDistSelect" required>
+                <option value="">Select District...</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="reg-section">
+          <h3>Equipment Checklist</h3>
+          <div id="ambulanceEquipChecklist" class="spec-checkboxes"></div>
+        </div>
+
+        <div class="reg-section">
+          <h3>Login Credentials</h3>
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label">Dashboard Password *</label>
+              <input type="password" name="password" class="form-input" required placeholder="Create a secure password" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Confirm Password *</label>
+              <input type="password" name="confirm_password" class="form-input" required placeholder="Confirm password" />
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-dispatch" style="width:100%; margin-top:1rem">
+          <span>🚑</span> Register Ambulance with LIFEGRID
+        </button>
+      </form>
+    </div>
+    <div class="section-card" style="margin-top:2rem">
+      <h3 class="section-card-title">📋 Registered Ambulances</h3>
+      <div id="registeredAmbulances" class="reg-list"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     HOSPITAL DETAIL MODAL
+     ============================================================ -->
+<div id="hospitalModal" class="modal-overlay hidden" onclick="closeHospitalModal(event)">
+  <div class="modal-card" id="hospitalModalCard">
+    <button class="modal-close" onclick="closeHospitalModal()">✕</button>
+    <div id="hospitalModalContent"></div>
+  </div>
+</div>
+
+<!-- ============================================================
+     AMBULANCE DETAIL MODAL
+     ============================================================ -->
+<div id="ambulanceModal" class="modal-overlay hidden" onclick="closeAmbulanceModal(event)">
+  <div class="modal-card" id="ambulanceModalCard">
+    <button class="modal-close" onclick="closeAmbulanceModal()">✕</button>
+    <div id="ambulanceModalContent"></div>
+    <div class="modal-3d-section">
+      <h3>🚑 3D Ambulance Visualization</h3>
+      <canvas id="ambulance3DCanvas" width="600" height="350"></canvas>
+      <div class="canvas-hint">Drag to rotate • Scroll to zoom</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     TOAST NOTIFICATION
+     ============================================================ -->
+<div id="toast" class="toast hidden"></div>
+
+<!-- ============================================================
+     DATA SCRIPTS
+     ============================================================ -->
+<!-- hospitals.json loaded async via fetch in app.js -->
+<script src="data/ambulances.js?v=20260905_1"></script>
+<script src="app.js?v=20260905_1"></script>
+</body>
+</html>

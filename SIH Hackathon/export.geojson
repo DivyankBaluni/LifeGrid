@@ -1,0 +1,2411 @@
+{
+  "type": "FeatureCollection",
+  "generator": "overpass-turbo",
+  "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL.",
+  "timestamp": "2026-08-21T14:54:59Z",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/583884416",
+        "addr:district": "Dehradun",
+        "addr:full": "Mussoorie",
+        "addr:postcode": "248179",
+        "addr:state": "Uttarakhand",
+        "amenity": "hospital",
+        "name": "Landour Community hospital",
+        "source": "OpenGovernmentData"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.0951087,
+          30.4589803
+        ]
+      },
+      "id": "node/583884416"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/621301948",
+        "addr:city": "Dehradun",
+        "addr:postcode": "248001",
+        "addr:street": "Dehradun-Mussoorie Road",
+        "amenity": "hospital",
+        "emergency": "yes",
+        "healthcare": "hospital",
+        "name": "Max Super Speciality Hospital",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.0748083,
+          30.3737695
+        ]
+      },
+      "id": "way/621301948"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/629798229",
+        "amenity": "hospital",
+        "building": "yes",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.0474558,
+          30.3407072
+        ]
+      },
+      "id": "way/629798229"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/742423053",
+        "addr:block": "Doiwala",
+        "addr:district": "Dehradun",
+        "addr:full": "Rishikesh Dehradun Road, Rishikesh",
+        "addr:postcode": "249201",
+        "addr:state": "Uttarakhand",
+        "addr:subdistrict": "Rishikesh",
+        "amenity": "hospital",
+        "building": "yes",
+        "description": "Government Hospital",
+        "healthcare": "hospital",
+        "name": "S.P.S Government Hospital Rishikesh",
+        "source": "OpenGovernmentData",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.2959302,
+          30.1087285
+        ]
+      },
+      "id": "way/742423053"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/742630681",
+        "addr:district": "Dehradun",
+        "addr:full": "36, Dehradhun Road, OppositePetrol Pump, Rishikesh",
+        "addr:postcode": "249201",
+        "addr:state": "Uttarakhand",
+        "amenity": "hospital",
+        "building": "yes",
+        "healthcare": "hospital",
+        "name": "Joshi Surgicial and Maternity Center",
+        "source": "OpenGovernmentData",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.2941363,
+          30.1120951
+        ]
+      },
+      "id": "way/742630681"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/742634686",
+        "addr:district": "Dehradun",
+        "addr:full": "288 , Haridwar Road ,Rishikesh",
+        "addr:postcode": "249201",
+        "addr:state": "Uttarakhand",
+        "amenity": "hospital",
+        "building": "yes",
+        "healthcare": "hospital",
+        "healthcare:speciality": "maternity",
+        "name": "Bharadwaj Hospital and Maternity Home",
+        "source": "OpenGovernmentData",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.2879645,
+          30.0981397
+        ]
+      },
+      "id": "way/742634686"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/742849500",
+        "addr:district": "Dehradun",
+        "addr:full": "Opposite Rama Palace, Dehradun Road",
+        "addr:postcode": "249201",
+        "addr:state": "Uttarakhand",
+        "amenity": "hospital",
+        "building": "yes",
+        "healthcare": "hospital",
+        "name": "Puri Sanjivani Hospital",
+        "source": "OpenGovernmentData",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.292536,
+          30.1143201
+        ]
+      },
+      "id": "way/742849500"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/742885990",
+        "addr:district": "Dehradun",
+        "addr:full": "104/14, Dehradhun Road, Rishikesh",
+        "addr:postcode": "249201",
+        "addr:state": "Uttarakhand",
+        "amenity": "hospital",
+        "building": "yes",
+        "healthcare": "hospital",
+        "name": "Dashmesh Hospital and Sandhu Surgicial Center",
+        "source": "OpenGovernmentData",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.2935133,
+          30.1120204
+        ]
+      },
+      "id": "way/742885990"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/743251353",
+        "addr:district": "Dehradun",
+        "addr:full": "Tilak Road,Near Nagar Palika",
+        "addr:postcode": "249201",
+        "addr:state": "Uttarakhand",
+        "amenity": "hospital",
+        "building": "yes",
+        "healthcare": "hospital",
+        "name": "Sri Krishna Sewa Ashram Hospital",
+        "source": "OpenGovernmentData",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.3005823,
+          30.1077707
+        ]
+      },
+      "id": "way/743251353"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/743357867",
+        "addr:district": "Dehradun",
+        "addr:full": "Mayakund Rishikesh",
+        "addr:postcode": "249201",
+        "addr:state": "Uttarakhand",
+        "amenity": "hospital",
+        "building": "yes",
+        "healthcare": "hospital",
+        "name": "Nirmal Ashram Hospital",
+        "source": "OpenGovernmentData",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.3032741,
+          30.1044439
+        ]
+      },
+      "id": "way/743357867"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/825078065",
+        "addr:district": "Dehradun",
+        "addr:full": "Near Bairraj Lake, Shivaji Nagar, Veerbhadra, Rishikesh",
+        "addr:postcode": "249202",
+        "addr:state": "Uttarakhand",
+        "addr:subdistrict": "Dehradun",
+        "alt_name": "AIIMS Rishikesh",
+        "amenity": "hospital",
+        "contact:phone": "0135-2462940",
+        "description": "Medical Colleges Hospital",
+        "email": "info@aiimsrishikesh.edu.in",
+        "healthcare": "hospital",
+        "name": "All India Institute of Medical Sciences, Rishikesh",
+        "operator:type": "government",
+        "phone": "+91 135 2462 503",
+        "source": "OpenGovernmentData",
+        "website": "https://aiimsrishikesh.edu.in/a1_1/",
+        "wikidata": "Q15177603",
+        "wikipedia": "en:All India Institute of Medical Sciences, Rishikesh",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.2840323,
+          30.0779929
+        ]
+      },
+      "id": "way/825078065"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/981252583",
+        "addr:district": "Dehradun",
+        "addr:full": "Swami Ram Nagar, P.O. Doiwala",
+        "addr:postcode": "248140",
+        "addr:state": "Uttarakhand",
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "name": "Himalayan Institute Hospital Trust",
+        "source": "OpenGovernmentData",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.1656733,
+          30.1926589
+        ]
+      },
+      "id": "way/981252583"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/981252584",
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.1657656,
+          30.195661
+        ]
+      },
+      "id": "way/981252584"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1223536930",
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "name": "Graphic Era Institue Of Medical Sciences",
+        "operator": "Graphic Era",
+        "operator:type": "private",
+        "website": "https://geimshospital.com/",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.8903136,
+          30.3504655
+        ]
+      },
+      "id": "way/1223536930"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1223536934",
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "name": "Shivalik Hospital (Ayurvedic)",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.8988687,
+          30.345568
+        ]
+      },
+      "id": "way/1223536934"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1357944888",
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "name": "Disaster Relief Center",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.037881,
+          30.3399881
+        ]
+      },
+      "id": "way/1357944888"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1408335029",
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "name": "St. Paul Hospital",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.9974362,
+          30.269848
+        ]
+      },
+      "id": "way/1408335029"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1442071333",
+        "amenity": "hospital",
+        "emergency": "yes",
+        "healthcare": "hospital",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.0658727,
+          30.3288529
+        ]
+      },
+      "id": "way/1442071333"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1697822274",
+        "amenity": "hospital",
+        "emergency": "yes",
+        "name": "Heart Clinic"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.0500178,
+          30.3179409
+        ]
+      },
+      "id": "node/1697822274"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1697822276",
+        "amenity": "hospital",
+        "emergency": "yes",
+        "name": "General Hospital"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.0503182,
+          30.319395
+        ]
+      },
+      "id": "node/1697822276"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1854105148",
+        "amenity": "hospital",
+        "name": "CMI"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.0474883,
+          30.3121892
+        ]
+      },
+      "id": "node/1854105148"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1887554875",
+        "addr:district": "Dehradun",
+        "addr:full": "No. 1 Ashirwad Enclave Ballupur",
+        "addr:postcode": "248001",
+        "addr:state": "Uttarakhand",
+        "amenity": "hospital",
+        "emergency": "yes",
+        "name": "Ashirwad Hospital",
+        "source": "OpenGovernmentData"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.0086156,
+          30.3328985
+        ]
+      },
+      "id": "node/1887554875"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1887561123",
+        "addr:district": "Dehradun",
+        "addr:full": "2/1 Ballupur Chowk",
+        "addr:postcode": "248001",
+        "addr:state": "Uttarakhand",
+        "amenity": "hospital",
+        "emergency": "yes",
+        "name": "Astha Hospital",
+        "source": "OpenGovernmentData"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.0101122,
+          30.3329685
+        ]
+      },
+      "id": "node/1887561123"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2054741736",
+        "amenity": "hospital",
+        "emergency": "no",
+        "name": "Wynberg Health Center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.0901685,
+          30.4488078
+        ]
+      },
+      "id": "node/2054741736"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3709894659",
+        "addr:city": "dehradun",
+        "addr:district": "Dehradun",
+        "addr:full": "Ballupur -Cancal Road",
+        "addr:housenumber": "576",
+        "addr:postcode": "248001",
+        "addr:state": "Uttarakhand",
+        "addr:street": "Shaheed Kashmirasingh Road",
+        "amenity": "hospital",
+        "emergency": "yes",
+        "healthcare": "hospital",
+        "healthcare:speciality": "chiropractic;gynaecology;general;ophthalmology;paediatrics;orthopaedics;psychiatry;dermatology;radiology;biology;urology;surgery;cardiology;physiotherapy;blood_check",
+        "name": "Synergy Hospital;Synergy Institute Of Medical Science",
+        "source": "OpenGovernmentData;local knowledge;survey"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.013544,
+          30.3380984
+        ]
+      },
+      "id": "node/3709894659"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4129769756",
+        "amenity": "hospital",
+        "healthcare": "hospital"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.2898977,
+          30.1068971
+        ]
+      },
+      "id": "node/4129769756"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4165218454",
+        "addr:city": "DEHRADUN",
+        "addr:postcode": "248001",
+        "addr:street": "NANDA KI CHOWKI",
+        "amenity": "hospital",
+        "emergency": "yes",
+        "name": "SUBHARTI HOSPITAL"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.9596015,
+          30.3430865
+        ]
+      },
+      "id": "node/4165218454"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4165237313",
+        "addr:city": "DEHRADUN",
+        "addr:postcode": "248007",
+        "addr:street": "UPES, BIDHOLI",
+        "amenity": "hospital",
+        "name": "INFIRMARY"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.9676696,
+          30.4169652
+        ]
+      },
+      "id": "node/4165237313"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4254504792",
+        "addr:district": "Dehradun",
+        "addr:full": "Near Mkp Inter College",
+        "addr:postcode": "248001",
+        "addr:state": "Uttarakhand",
+        "amenity": "hospital",
+        "name": "Government Doon Hospital",
+        "opening_hours": "Mo-Sa",
+        "source": "OpenGovernmentData"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.0422984,
+          30.3196005
+        ]
+      },
+      "id": "node/4254504792"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4255814491",
+        "addr:city": "Dehradun",
+        "addr:housenumber": "Shop No 28,",
+        "addr:postcode": "248001",
+        "addr:street": "Meedo Arcade Adjacent to Pine Hall School",
+        "amenity": "hospital",
+        "emergency": "yes",
+        "healthcare:speciality": "wedding",
+        "name": "wedding by fourth munky"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.0424823,
+          30.3184253
+        ]
+      },
+      "id": "node/4255814491"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6581821447",
+        "addr:block": "Raipur",
+        "addr:district": "Dehradun",
+        "addr:full": "Kharjan Road",
+        "addr:postcode": "248001",
+        "addr:state": "Uttarakhand",
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "healthcare:speciality": "general",
+        "name": "Deen Dayal Upadhyay hospital",
+        "source": "OpenGovernmentData"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.0576667,
+          30.3207776
+        ]
+      },
+      "id": "node/6581821447"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6895578193",
+        "addr:city": "Rishikesh",
+        "addr:full": "Virbhadra Marg, Pashulok",
+        "addr:state": "Uttarakhand",
+        "amenity": "hospital",
+        "contact:phone": "0135-2462967",
+        "email": "transfusionmedicineris@gmail.com",
+        "healthcare": "hospital",
+        "name": "AIIMS's Blood Bank Rishikesh",
+        "operator:type": "government",
+        "source": "OpenGovernmentData"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.2861301,
+          30.0808844
+        ]
+      },
+      "id": "node/6895578193"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6897688071",
+        "addr:city": "Rishikesh",
+        "addr:district": "DEHRADUN",
+        "addr:full": "Virbhadra Marg, Pashulok, Rishikesh",
+        "addr:postcode": "249201",
+        "addr:state": "Uttarakhand",
+        "amenity": "hospital",
+        "contact:phone": "1352462967",
+        "healthcare": "hospital",
+        "name": "AIIMS Blood Bank, Rishikesh",
+        "opening_hours": "24/7",
+        "operator:type": "government",
+        "source": "OpenGovernmentData"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.2864837,
+          30.0808782
+        ]
+      },
+      "id": "node/6897688071"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6950590506",
+        "addr:district": "Dehradun",
+        "addr:full": "Patel Nagar",
+        "addr:postcode": "248001",
+        "addr:state": "Uttarakhand",
+        "amenity": "hospital",
+        "name": "Shri Mahant Indiresh Hospital",
+        "source": "OpenGovernmentData"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.0209032,
+          30.304785
+        ]
+      },
+      "id": "node/6950590506"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6950590580",
+        "addr:district": "Dehradun",
+        "addr:full": "Ashok Vihar Ajabpur , Haridwar By Pass Road Rispana Railway Crossing",
+        "addr:postcode": "248001",
+        "addr:state": "Uttarakhand",
+        "amenity": "hospital",
+        "name": "Surya Hospital, Dehradun",
+        "source": "OpenGovernmentData"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.0498482,
+          30.2909374
+        ]
+      },
+      "id": "node/6950590580"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6950595594",
+        "addr:district": "Dehradun",
+        "addr:full": "20 , Balbir Road",
+        "addr:postcode": "248001",
+        "addr:state": "Uttarakhand",
+        "amenity": "hospital",
+        "name": "Param Hospital, Dehradun",
+        "source": "OpenGovernmentData"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.0540472,
+          30.3068298
+        ]
+      },
+      "id": "node/6950595594"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6950904473",
+        "addr:district": "Dehradun",
+        "addr:full": "22, Curzun ( Nehru Road) Near Convent School Avas Vikas Bhawan",
+        "addr:postcode": "248001",
+        "addr:state": "Uttarakhand",
+        "amenity": "hospital",
+        "name": "Yash Respiratory and Medical Disease Centre",
+        "source": "OpenGovernmentData"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.054412,
+          30.3163536
+        ]
+      },
+      "id": "node/6950904473"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6950964468",
+        "addr:district": "Dehradun",
+        "addr:full": "Street No-1,Rajender Nagar",
+        "addr:postcode": "248001",
+        "addr:state": "Uttarakhand",
+        "amenity": "hospital",
+        "name": "Vishal Eye Hospital, Dehradun",
+        "source": "OpenGovernmentData"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.0223811,
+          30.3363706
+        ]
+      },
+      "id": "node/6950964468"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6950969272",
+        "addr:district": "Dehradun",
+        "addr:full": "10,Ballupur Road",
+        "addr:postcode": "248001",
+        "addr:state": "Uttarakhand",
+        "amenity": "hospital",
+        "name": "Vardaan Children Hospital",
+        "source": "OpenGovernmentData"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.0235478,
+          30.3338774
+        ]
+      },
+      "id": "node/6950969272"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6950999156",
+        "addr:district": "Dehradun",
+        "addr:full": "Mandir Marg,Turner Road,Clement Town",
+        "addr:postcode": "248001",
+        "addr:state": "Uttarakhand",
+        "amenity": "hospital",
+        "name": "Vaidya Chandra Prakash Cancer Research Foundation",
+        "source": "OpenGovernmentData"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.002518,
+          30.2820388
+        ]
+      },
+      "id": "node/6950999156"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6951002353",
+        "addr:district": "Dehradun",
+        "addr:full": "196, Rajpur Road",
+        "addr:postcode": "248001",
+        "addr:state": "Uttarakhand",
+        "amenity": "hospital",
+        "name": "Uttranchal Ayurvedic Hospital",
+        "source": "OpenGovernmentData"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.0886424,
+          30.382057
+        ]
+      },
+      "id": "node/6951002353"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6951951139",
+        "addr:block": "Raipur",
+        "addr:district": "Dehradun",
+        "addr:full": "Doiwala",
+        "addr:postcode": "248143",
+        "addr:state": "Uttarakhand",
+        "addr:subdistrict": "Dehradun",
+        "amenity": "hospital",
+        "description": "Community Health Centre",
+        "healthcare": "centre",
+        "name": "CHC Doiwala",
+        "source": "OpenGovernmentData"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.123208,
+          30.1798225
+        ]
+      },
+      "id": "node/6951951139"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6951957224",
+        "addr:district": "Dehradun",
+        "addr:full": "Main Road, Vikas Nagar",
+        "addr:postcode": "248198",
+        "addr:state": "Uttarakhand",
+        "amenity": "hospital",
+        "name": "Chauhan Hospital",
+        "source": "OpenGovernmentData"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.7767081,
+          30.4719649
+        ]
+      },
+      "id": "node/6951957224"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6951986574",
+        "addr:district": "Dehradun",
+        "addr:full": "Govind Nagar,Race Course",
+        "addr:postcode": "248001",
+        "addr:state": "Uttarakhand",
+        "amenity": "hospital",
+        "name": "Guru Teg Bahadur Sahib Hospital",
+        "source": "OpenGovernmentData"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.04785,
+          30.3112213
+        ]
+      },
+      "id": "node/6951986574"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6951991798",
+        "addr:district": "Dehradun",
+        "addr:full": "Jogiwala,Haridwar Road",
+        "addr:postcode": "248001",
+        "addr:state": "Uttarakhand",
+        "amenity": "hospital",
+        "name": "Govind Hospital, Dehradun",
+        "source": "OpenGovernmentData"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.0685231,
+          30.282846
+        ]
+      },
+      "id": "node/6951991798"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6951994311",
+        "addr:district": "Dehradun",
+        "addr:full": "17, New Sahastradhara Road, Dehra Dun",
+        "addr:postcode": "248001",
+        "addr:state": "Uttarakhand",
+        "amenity": "hospital",
+        "name": "Healing Touch Hospital",
+        "source": "OpenGovernmentData"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.0658168,
+          30.3271255
+        ]
+      },
+      "id": "node/6951994311"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6952073470",
+        "addr:district": "Dehradun",
+        "addr:full": "5, New Road",
+        "addr:postcode": "248001",
+        "addr:state": "Uttarakhand",
+        "amenity": "hospital",
+        "name": "Kala E.N.T And Laser Centre",
+        "source": "OpenGovernmentData"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.0231428,
+          30.2875988
+        ]
+      },
+      "id": "node/6952073470"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6952104090",
+        "addr:district": "Dehradun",
+        "addr:full": "Herbertpur",
+        "addr:postcode": "248001",
+        "addr:state": "Uttarakhand",
+        "amenity": "hospital",
+        "name": "Herbertpur Christian Hospital",
+        "source": "OpenGovernmentData"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.7554543,
+          30.4483164
+        ]
+      },
+      "id": "node/6952104090"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6952104642",
+        "addr:district": "Dehradun",
+        "addr:full": "4,Old Survey Road",
+        "addr:postcode": "248001",
+        "addr:state": "Uttarakhand",
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "name": "Jan Kalyan Hospital And Research Insititute",
+        "source": "OpenGovernmentData"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.0538367,
+          30.3316376
+        ]
+      },
+      "id": "node/6952104642"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6952110670",
+        "addr:district": "Dehradun",
+        "addr:full": "Between Rispana Bridge & Railway Crossing , Main Haridwar Bypass Road, Near Home Guard Office",
+        "addr:postcode": "248001",
+        "addr:state": "Uttarakhand",
+        "amenity": "hospital",
+        "name": "Kanishk Surgical and Super Speciality Hospital",
+        "source": "OpenGovernmentData"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.0508983,
+          30.2917978
+        ]
+      },
+      "id": "node/6952110670"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6952139077",
+        "addr:district": "Dehradun",
+        "addr:full": "8 Inder Road",
+        "addr:postcode": "248001",
+        "addr:state": "Uttarakhand",
+        "amenity": "hospital",
+        "name": "Kamra`s Urinary and Surgical Diseasea Centre",
+        "source": "OpenGovernmentData"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.0523923,
+          30.3143113
+        ]
+      },
+      "id": "node/6952139077"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6952147102",
+        "addr:district": "Dehradun",
+        "addr:full": "82, Vivek Vihar , Kanwali Road , Baliwala Chowk",
+        "addr:postcode": "248001",
+        "addr:state": "Uttarakhand",
+        "amenity": "hospital",
+        "name": "Ayurmax Multispeciality Hospital",
+        "source": "OpenGovernmentData"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.0147126,
+          30.3236075
+        ]
+      },
+      "id": "node/6952147102"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6952161744",
+        "addr:district": "Dehradun",
+        "addr:full": "Pahari Gali, Vikasnagar",
+        "addr:postcode": "248001",
+        "addr:state": "Uttarakhand",
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "healthcare:speciality": "general;internal;otolaryngology",
+        "name": "Bhandari Hospital",
+        "source": "OpenGovernmentData;local knowledge"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.766729,
+          30.4694358
+        ]
+      },
+      "id": "node/6952161744"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6953083990",
+        "addr:district": "Dehradun",
+        "addr:full": "5, Indira Nagar Colony, Dehradun Uttaranchal",
+        "addr:postcode": "248001",
+        "addr:state": "Uttarakhand",
+        "amenity": "hospital",
+        "name": "Sanjivani Hospital, Dehradun",
+        "source": "OpenGovernmentData"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.0050567,
+          30.3247211
+        ]
+      },
+      "id": "node/6953083990"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6953276771",
+        "addr:district": "Dehradun",
+        "addr:full": "Saharanpur Chowk",
+        "addr:postcode": "248001",
+        "addr:state": "Uttarakhand",
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "name": "Ashadeep Hospital",
+        "source": "OpenGovernmentData"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.0290544,
+          30.3184444
+        ]
+      },
+      "id": "node/6953276771"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6953301797",
+        "addr:district": "Dehradun",
+        "addr:full": "7,Inder Road",
+        "addr:postcode": "248001",
+        "addr:state": "Uttarakhand",
+        "amenity": "hospital",
+        "name": "Sharda Surgical and Urology Centre",
+        "source": "OpenGovernmentData"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.0512014,
+          30.3153417
+        ]
+      },
+      "id": "node/6953301797"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6953552504",
+        "addr:district": "Dehradun",
+        "addr:full": "Araghar Chowk, 57, Hardwar Road",
+        "addr:postcode": "248001",
+        "addr:state": "Uttarakhand",
+        "amenity": "hospital",
+        "name": "Oli Eye Hospital",
+        "source": "OpenGovernmentData"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.0485205,
+          30.310353
+        ]
+      },
+      "id": "node/6953552504"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6953552525",
+        "addr:district": "Dehradun",
+        "addr:full": "20/3, Doon Vihar , Line -2 Jakhan Rajpur Road",
+        "addr:postcode": "248001",
+        "addr:state": "Uttarakhand",
+        "amenity": "hospital",
+        "name": "Sanjay Orthopaedic and Spine Centre",
+        "source": "OpenGovernmentData"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.0677506,
+          30.3644053
+        ]
+      },
+      "id": "node/6953552525"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6953930189",
+        "addr:district": "Dehradun",
+        "addr:full": "1 Darshani Gate",
+        "addr:postcode": "248001",
+        "addr:state": "Uttarakhand",
+        "amenity": "hospital",
+        "name": "Garg ENT and Dental Clinic",
+        "source": "OpenGovernmentData"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.0333661,
+          30.3175726
+        ]
+      },
+      "id": "node/6953930189"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6953935730",
+        "addr:district": "Dehradun",
+        "addr:full": "No. 7, Inder Road, Dalanwala",
+        "addr:postcode": "248001",
+        "addr:state": "Uttarakhand",
+        "amenity": "hospital",
+        "name": "Renal Care and Dialysis Center",
+        "source": "OpenGovernmentData"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.0513221,
+          30.3152005
+        ]
+      },
+      "id": "node/6953935730"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6954506663",
+        "addr:district": "Dehradun",
+        "addr:full": "2,Guru Road",
+        "addr:postcode": "248001",
+        "addr:state": "Uttarakhand",
+        "amenity": "hospital",
+        "name": "Shivanjan Hospital",
+        "source": "OpenGovernmentData"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.0219506,
+          30.3125064
+        ]
+      },
+      "id": "node/6954506663"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6954513193",
+        "addr:district": "Dehradun",
+        "addr:full": "69 Rishikesh Road,Doiwala",
+        "addr:postcode": "248140",
+        "addr:state": "Uttarakhand",
+        "amenity": "hospital",
+        "name": "Shed Hospital",
+        "source": "OpenGovernmentData"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.1295487,
+          30.1773948
+        ]
+      },
+      "id": "node/6954513193"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6954522231",
+        "addr:district": "Dehradun",
+        "addr:full": "Shri Guru Ram Rai Institute of Medical and Health Sciences",
+        "addr:postcode": "248001",
+        "addr:state": "Uttarakhand",
+        "amenity": "hospital",
+        "email": "sgrr.mco@gmail.com; smi.hospital@gmail.com",
+        "name": "SGRR Medical College hospital",
+        "operator:type": "government",
+        "source": "OpenGovernmentData"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.0214584,
+          30.3029695
+        ]
+      },
+      "id": "node/6954522231"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6954999767",
+        "addr:district": "Dehradun",
+        "addr:full": "123-A, Mahindra Vihar, Behind Hotel Surbhi Palace,Ballupur",
+        "addr:postcode": "248001",
+        "addr:state": "Uttarakhand",
+        "amenity": "hospital",
+        "name": "Archana Hospital & Lithotripsy Centre",
+        "source": "OpenGovernmentData"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.0223086,
+          30.3324791
+        ]
+      },
+      "id": "node/6954999767"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6955008110",
+        "addr:district": "Dehradun",
+        "addr:full": "11/1, Shastri Nagar, Ajabpur Kalan",
+        "addr:postcode": "248001",
+        "addr:state": "Uttarakhand",
+        "amenity": "hospital",
+        "name": "Ananda Hospital",
+        "source": "OpenGovernmentData"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.0579914,
+          30.291169
+        ]
+      },
+      "id": "node/6955008110"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6956686298",
+        "addr:district": "Dehradun",
+        "addr:full": "Chandralok Colony, Rajpura Road",
+        "addr:postcode": "248001",
+        "addr:state": "Uttarakhand",
+        "amenity": "hospital",
+        "name": "Saini Ivf and Fertility Research Centre",
+        "source": "OpenGovernmentData"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.0593446,
+          30.3409877
+        ]
+      },
+      "id": "node/6956686298"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6956686313",
+        "addr:district": "Dehradun",
+        "addr:full": "Nehru Colony , Haridwar Road(Near Lic Div.)",
+        "addr:postcode": "248001",
+        "addr:state": "Uttarakhand",
+        "amenity": "hospital",
+        "name": "Navjyoti Eye Hospital",
+        "source": "OpenGovernmentData"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.0530977,
+          30.2983402
+        ]
+      },
+      "id": "node/6956686313"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6956686347",
+        "addr:district": "Dehradun",
+        "addr:full": "Near Hilton School, Saharanpur Road, Majra Dehradun",
+        "addr:postcode": "248001",
+        "addr:state": "Uttarakhand",
+        "amenity": "hospital",
+        "name": "Minocha Hospital and Maternity Home",
+        "source": "OpenGovernmentData"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.9986905,
+          30.2919587
+        ]
+      },
+      "id": "node/6956686347"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6957204721",
+        "addr:district": "Dehradun",
+        "addr:full": "55, Hardwar Road",
+        "addr:postcode": "248001",
+        "addr:state": "Uttarakhand",
+        "amenity": "hospital",
+        "name": "Doon Valley Hospital",
+        "source": "OpenGovernmentData"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.0480015,
+          30.3119982
+        ]
+      },
+      "id": "node/6957204721"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6957891041",
+        "addr:district": "Dehradun",
+        "addr:full": "Pd, Tandon Marg, Laxman Chowk Dehradun",
+        "addr:postcode": "248001",
+        "addr:state": "Uttarakhand",
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "name": "Prem Sukh B Hospital And Dailysis Centre",
+        "source": "OpenGovernmentData"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.0241728,
+          30.3183749
+        ]
+      },
+      "id": "node/6957891041"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6957931047",
+        "addr:district": "Dehradun",
+        "addr:full": "12, East Canal Road",
+        "addr:postcode": "248001",
+        "addr:state": "Uttarakhand",
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "name": "S. K. Memorial Hospital",
+        "source": "OpenGovernmentData"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.0524835,
+          30.3288236
+        ]
+      },
+      "id": "node/6957931047"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6957974287",
+        "addr:district": "Dehradun",
+        "addr:full": "Sayed Road Vikasnagar",
+        "addr:postcode": "248198",
+        "addr:state": "Uttarakhand",
+        "amenity": "hospital",
+        "name": "Krishna Surgical Centre",
+        "source": "OpenGovernmentData"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.7792495,
+          30.4708691
+        ]
+      },
+      "id": "node/6957974287"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6957991230",
+        "addr:district": "Dehradun",
+        "addr:full": "98/18 Pragati Vihar, Near Rispana Bridge, Dharampur",
+        "addr:postcode": "248001",
+        "addr:state": "Uttarakhand",
+        "amenity": "hospital",
+        "email": "info@lifelinedun.in",
+        "healthcare:speciality": "IVF and Infertility, Laparoscopic Surgery, Obstetrics and Gynaecology, Sexual Medicine, Urology",
+        "name": "Lifeline Hospital and Urology Institute",
+        "operator:type": "private",
+        "source": "OpenGovernmentData"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.053028,
+          30.295105
+        ]
+      },
+      "id": "node/6957991230"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6958050453",
+        "addr:district": "Dehradun",
+        "addr:full": "Rajpur Road",
+        "addr:postcode": "248009",
+        "addr:state": "Uttarakhand",
+        "amenity": "hospital",
+        "name": "Sakya Hospital",
+        "source": "OpenGovernmentData"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.0881622,
+          30.3792619
+        ]
+      },
+      "id": "node/6958050453"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6958096955",
+        "addr:district": "Dehradun",
+        "addr:full": "230, Model Colony, Dr, Rn Singh Lane, Araghar, Hardwar Road",
+        "addr:postcode": "248003",
+        "addr:state": "Uttarakhand",
+        "amenity": "hospital",
+        "name": "Singh Eye Clinic and Hospital",
+        "source": "OpenGovernmentData",
+        "website": "https://eyeqindia.com/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.0491656,
+          30.308365
+        ]
+      },
+      "id": "node/6958096955"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7121752304",
+        "addr:block": "Raipur",
+        "addr:district": "Dehradun",
+        "addr:full": "Mehuwala",
+        "addr:postcode": "248146",
+        "addr:state": "Uttarakhand",
+        "amenity": "hospital",
+        "description": "Governnment Hospital",
+        "name": "Government Hospital Mehuwala",
+        "source": "OpenGovernmentData"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.982168,
+          30.311503
+        ]
+      },
+      "id": "node/7121752304"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7121752339",
+        "addr:block": "Sahaspur",
+        "addr:district": "Dehradun",
+        "addr:full": "Mussoorie, Maal Road, St. Marry Hosp. Mussoorie",
+        "addr:postcode": "248179",
+        "addr:state": "Uttarakhand",
+        "addr:subdistrict": "Dehradun",
+        "amenity": "hospital",
+        "description": "Sub-District Hospital",
+        "name": "St. Marry Hospital Mussoorie",
+        "source": "OpenGovernmentData"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.0809098,
+          30.4564283
+        ]
+      },
+      "id": "node/7121752339"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7121752353",
+        "addr:block": "Sahaspur",
+        "addr:district": "Dehradun",
+        "addr:full": "Premnagar, Dehradun, Tyagi market",
+        "addr:postcode": "248001",
+        "addr:state": "Uttarakhand",
+        "amenity": "hospital",
+        "name": "Government Hospital premnagar Dehradun",
+        "source": "OpenGovernmentData"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.9668266,
+          30.3354898
+        ]
+      },
+      "id": "node/7121752353"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7127949278",
+        "addr:district": "Dehradun",
+        "addr:full": "Tiuni",
+        "addr:postcode": "248199",
+        "addr:state": "Uttarakhand",
+        "addr:subdistrict": "Tyuni",
+        "amenity": "hospital",
+        "name": "Government Hospital Tiuni",
+        "source": "OpenGovernmentData"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.8479762,
+          30.9429389
+        ]
+      },
+      "id": "node/7127949278"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7127949336",
+        "addr:block": "Chakrata",
+        "addr:district": "Dehradun",
+        "addr:full": "Chakrata",
+        "addr:postcode": "248123",
+        "addr:state": "Uttarakhand",
+        "amenity": "hospital",
+        "description": "Government Hospital",
+        "name": "Government Hospital Chakrata",
+        "source": "OpenGovernmentData"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.854791,
+          30.705156
+        ]
+      },
+      "id": "node/7127949336"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7479937218",
+        "addr:district": "Dehradun",
+        "addr:full": "Bhauwala Rajawala Road, Dehradun, Sudhowala",
+        "addr:postcode": "248007",
+        "addr:state": "Uttarakhand",
+        "amenity": "hospital",
+        "name": "Raj Hospital And Diagnostic Centre",
+        "source": "Local Knowledge"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.9363421,
+          30.3524946
+        ]
+      },
+      "id": "node/7479937218"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7479937227",
+        "addr:district": "Dehradun",
+        "addr:full": "6, New Road, Near Doon Hospital, Race Course",
+        "addr:postcode": "248001",
+        "addr:state": "Uttarakhand",
+        "amenity": "hospital",
+        "name": "Aarogyadham Super Speciality Hospital",
+        "source": "Local Knowledge"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.0430172,
+          30.3191611
+        ]
+      },
+      "id": "node/7479937227"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7479937229",
+        "addr:district": "Dehradun",
+        "addr:full": "Main Road, Tilak Nagar, Mohkampur, Mohkam Pur Kala",
+        "addr:postcode": "248005",
+        "addr:state": "Uttarakhand",
+        "amenity": "hospital",
+        "name": "Ghavle Hospital",
+        "source": "Local Knowledge"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.0787419,
+          30.2686878
+        ]
+      },
+      "id": "node/7479937229"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7479937232",
+        "addr:district": "Dehradun",
+        "addr:full": "44, Kotla Santoor, Nanda Ki Chowki, Dehradun",
+        "addr:postcode": "248007",
+        "addr:state": "Uttarakhand",
+        "amenity": "hospital",
+        "name": "Lakva Hospital",
+        "source": "Local Knowledge"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.9664382,
+          30.346949
+        ]
+      },
+      "id": "node/7479937232"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7479937246",
+        "addr:district": "Dehradun",
+        "addr:full": "Special Wing, Prem Nagar, Dehradun",
+        "addr:postcode": "248007",
+        "addr:state": "Uttarakhand",
+        "amenity": "hospital",
+        "name": "Vohra Mother & Child Care Hospital",
+        "source": "Local Knowledge"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.9673178,
+          30.3343136
+        ]
+      },
+      "id": "node/7479937246"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7479937256",
+        "addr:district": "Dehradun",
+        "addr:full": "54, Haridwar Road, Guru Nanak Vihar, Race Course, Dehradun",
+        "addr:postcode": "248001",
+        "addr:state": "Uttarakhand",
+        "amenity": "hospital",
+        "name": "CMI Hospital",
+        "source": "Local Knowledge"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.0437622,
+          30.3167914
+        ]
+      },
+      "id": "node/7479937256"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7479937262",
+        "addr:district": "Dehradun",
+        "addr:full": "Garh Vihar Phase 2, Mohkampur, Kala",
+        "addr:postcode": "248005",
+        "addr:state": "Uttarakhand",
+        "amenity": "hospital",
+        "name": "Doon Public Hospital",
+        "source": "Local Knowledge"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.0807579,
+          30.2713518
+        ]
+      },
+      "id": "node/7479937262"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7479937267",
+        "addr:district": "Dehradun",
+        "addr:full": "Subhartipuram, Kotra Santour, Prem Nagar, Shahpur Santore",
+        "addr:postcode": "248007",
+        "addr:state": "Uttarakhand",
+        "amenity": "hospital",
+        "name": "Subharti Hospital and College",
+        "source": "Local Knowledge"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.9664615,
+          30.3437396
+        ]
+      },
+      "id": "node/7479937267"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7479937280",
+        "addr:district": "Dehradun",
+        "addr:full": "Main, Haridwar Road, Jogiwala, Chowk",
+        "addr:postcode": "248001",
+        "addr:state": "Uttarakhand",
+        "amenity": "hospital",
+        "name": "Kailash Hospital, Dehradun",
+        "source": "Local Knowledge"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.064203,
+          30.288311
+        ]
+      },
+      "id": "node/7479937280"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7479937283",
+        "addr:district": "Dehradun",
+        "addr:full": "Mohkampur, Dehradun",
+        "addr:postcode": "248005",
+        "addr:state": "Uttarakhand",
+        "amenity": "hospital",
+        "name": "Nethra Jovan Eyes Hospital",
+        "source": "Local Knowledge"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.0712299,
+          30.2811131
+        ]
+      },
+      "id": "node/7479937283"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7479937286",
+        "addr:district": "Dehradun",
+        "addr:full": "17-C, New Road, Near Mkp College, Race Course",
+        "addr:postcode": "248001",
+        "addr:state": "Uttarakhand",
+        "amenity": "hospital",
+        "name": "Dr. Ajay Sharma Hospital",
+        "source": "Local Knowledge"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.046923,
+          30.3174427
+        ]
+      },
+      "id": "node/7479937286"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7479937293",
+        "addr:district": "Dehradun",
+        "addr:full": "Uddiwala, Dehradun",
+        "addr:postcode": "248001",
+        "addr:state": "Uttarakhand",
+        "amenity": "hospital",
+        "name": "Synergy Hospital",
+        "source": "Local Knowledge"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.0138545,
+          30.3375992
+        ]
+      },
+      "id": "node/7479937293"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7479937300",
+        "addr:district": "Dehradun",
+        "addr:full": "Prem Nagar, Dehradun, Uttarakhand",
+        "addr:postcode": "248007",
+        "addr:state": "Uttarakhand",
+        "amenity": "hospital",
+        "name": "Government Hospital, Dehradun",
+        "source": "Local Knowledge"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.9593852,
+          30.3378635
+        ]
+      },
+      "id": "node/7479937300"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7479937303",
+        "addr:district": "Dehradun",
+        "addr:full": "17, Cross Road, Race Course, Dehradun",
+        "addr:postcode": "248001",
+        "addr:state": "Uttarakhand",
+        "amenity": "hospital",
+        "name": "City Heart Centre",
+        "source": "Local Knowledge"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.0503125,
+          30.3196861
+        ]
+      },
+      "id": "node/7479937303"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7479937304",
+        "addr:district": "Dehradun",
+        "addr:full": "58, Chakarata Road, Beside Hp Petrol Pump, Prem Nagar",
+        "addr:postcode": "248001",
+        "addr:state": "Uttarakhand",
+        "amenity": "hospital",
+        "name": "Luthra Maternity & Infertility Centre",
+        "source": "Local Knowledge"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.0299292,
+          30.3299169
+        ]
+      },
+      "id": "node/7479937304"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7479937308",
+        "addr:district": "Dehradun",
+        "addr:full": "Chakarata Road, Ballupur",
+        "addr:postcode": "248001",
+        "addr:state": "Uttarakhand",
+        "amenity": "hospital",
+        "name": "ONGC Hospital",
+        "source": "Local Knowledge"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.0167854,
+          30.3354477
+        ]
+      },
+      "id": "node/7479937308"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7479937310",
+        "addr:district": "Dehradun",
+        "addr:full": "20, Balbir Road, Near Dena Bank, Dalanwala, Dehradun",
+        "addr:postcode": "248001",
+        "addr:state": "Uttarakhand",
+        "amenity": "hospital",
+        "name": "Param Hospital",
+        "source": "Local Knowledge"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.045445,
+          30.310123
+        ]
+      },
+      "id": "node/7479937310"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7479937323",
+        "addr:district": "Dehradun",
+        "addr:full": "2nd Floor, Coronation Hospital, Curzon Road, Dalanwala, Dehradun",
+        "addr:postcode": "248001",
+        "addr:state": "Uttarakhand",
+        "amenity": "hospital",
+        "name": "Fortis Escorts Hospital, Dehradun",
+        "source": "Local Knowledge"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.057667,
+          30.320661
+        ]
+      },
+      "id": "node/7479937323"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8236527614",
+        "addr:city": "Dehradun",
+        "addr:district": "Dehradun",
+        "addr:full": "Rahat",
+        "addr:postcode": "248008",
+        "addr:state": "Uttarakhand",
+        "addr:street": "Aamwala, Dehradun, Uttarakhand",
+        "amenity": "hospital",
+        "emergency": "yes",
+        "healthcare": "hospital",
+        "name": "Government Hospital, Rahat",
+        "source": "Local Knowledge"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.0812465,
+          30.3342006
+        ]
+      },
+      "id": "node/8236527614"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8512755850",
+        "addr:city": "Dehradun",
+        "addr:housenumber": "8/6, Body Guard",
+        "addr:postcode": "248001",
+        "addr:street": "Canal Road",
+        "amenity": "hospital",
+        "description": "Opposite NIVH",
+        "emergency": "yes",
+        "healthcare": "hospital",
+        "healthcare:speciality": "ophthalmology",
+        "name": "Dr Smriti Eye Centre",
+        "operator": "Dr Smriti Jain",
+        "operator:type": "private"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.0665833,
+          30.3519545
+        ]
+      },
+      "id": "node/8512755850"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8818519318",
+        "addr:postcode": "248001",
+        "addr:street": "Nardev Shastri Marg",
+        "amenity": "hospital",
+        "email": "artdoon@gmail.com",
+        "name": "ए.आर.टी. प्लस केंद्र",
+        "name:en": "ART Plus Centre",
+        "phone": "0135-2655529"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.0417924,
+          30.3206193
+        ]
+      },
+      "id": "node/8818519318"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/9385639317",
+        "amenity": "hospital",
+        "name": "ART Plus Centre Doon Hospital"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.0418042,
+          30.3206591
+        ]
+      },
+      "id": "node/9385639317"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/10790105930",
+        "addr:city": "Dehradun",
+        "addr:postcode": "248001",
+        "addr:street": "SP Wahi ONGC Hospital,",
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "healthcare:speciality": "joint_replacement;trauma",
+        "name": "Archit Clinic",
+        "operator": "Novosalus",
+        "operator:type": "private"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.0159348,
+          30.3352245
+        ]
+      },
+      "id": "node/10790105930"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11691647039",
+        "amenity": "hospital",
+        "emergency": "yes",
+        "healthcare": "hospital",
+        "healthcare:speciality": "general;gynaecology;orthopaedics;surgery;vaccination;paediatric_surgery;emergency;paediatrics",
+        "name": "Healing Touch Hospital"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.0660533,
+          30.3286997
+        ]
+      },
+      "id": "node/11691647039"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11718292127",
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "name": "VAISH NURSING HOME"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.0595528,
+          30.3321602
+        ]
+      },
+      "id": "node/11718292127"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11778269180",
+        "addr:street": "Haridwar Road",
+        "amenity": "hospital",
+        "name": "Dr. Vineet Kala"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.0520814,
+          30.2994218
+        ]
+      },
+      "id": "node/11778269180"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11860290763",
+        "amenity": "hospital",
+        "name": "Rana eye center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.2736127,
+          30.0903364
+        ]
+      },
+      "id": "node/11860290763"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11860352788",
+        "amenity": "hospital",
+        "name": "Neeraj epilepsy clinic"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.2884113,
+          30.0987913
+        ]
+      },
+      "id": "node/11860352788"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11929767034",
+        "addr:city": "Dehradun,",
+        "addr:district": "Uttarakhand",
+        "addr:housenumber": "16",
+        "addr:postcode": "248010",
+        "addr:street": "Deepnagar colony",
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "name": "Medical Store"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.0480676,
+          30.2864273
+        ]
+      },
+      "id": "node/11929767034"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/12049320442",
+        "amenity": "hospital",
+        "name": "Seema dental college and hospital"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.2771924,
+          30.0691971
+        ]
+      },
+      "id": "node/12049320442"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/12593415466",
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "name": "Tulas owner"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.0671501,
+          30.3763701
+        ]
+      },
+      "id": "node/12593415466"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/13482147669",
+        "addr:city": "Dehradun",
+        "addr:district": "Dehradun",
+        "addr:housenumber": "45",
+        "addr:postcode": "248001",
+        "addr:street": "Balliwala Chowk",
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "healthcare:speciality": "gynaecology",
+        "name": "Jawla Hospital"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.0139654,
+          30.3234336
+        ]
+      },
+      "id": "node/13482147669"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/13506691110",
+        "addr:city": "Dehradun",
+        "addr:district": "Dehradun",
+        "addr:housenumber": "197,",
+        "addr:postcode": "248001",
+        "addr:street": "Haridwar Road, Near Rispana Bridge",
+        "amenity": "hospital",
+        "contact:facebook": "https://www.facebook.com/p/Panacea-Hospital-Dehradun-100092607985448/",
+        "email": "doonpanaceahospital@gmail.com",
+        "emergency": "yes",
+        "healthcare": "hospital",
+        "healthcare:speciality": "general;internal;gynaecology;orthopaedics;surgery;neurosurgery;neurology;urology;paediatrics",
+        "internet_access:fee": "no",
+        "mobile": "+918630070909",
+        "name": "Panacea Super Speciality Hospital Dehradun",
+        "name:hi": "पैनासिया हॉस्पिटल, देहरादून",
+        "opening_hours": "24/7"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.0557992,
+          30.2963681
+        ]
+      },
+      "id": "node/13506691110"
+    }
+  ]
+}
