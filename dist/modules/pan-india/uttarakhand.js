@@ -34,7 +34,7 @@ function estimateEtaMinutes(distKm, isEmergency = true) {
 }
 // 1. Parse Uttarakhand GeoJSON
 function loadUttarakhandHospitalsFromGeoJSON() {
-    const geojsonPath = path_1.default.resolve(process.cwd(), 'SIH Hackathon/export.geojson');
+    const geojsonPath = path_1.default.resolve(process.cwd(), 'data/export.geojson');
     if (!fs_1.default.existsSync(geojsonPath)) {
         console.warn('[Uttarakhand] GeoJSON file not found at:', geojsonPath);
         return [];

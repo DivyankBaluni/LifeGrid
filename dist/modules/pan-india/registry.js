@@ -20,15 +20,21 @@ function loadPanIndiaDataset() {
     }
     try {
         // 1. Load Ambulances
-        const ambPath = path_1.default.resolve(process.cwd(), 'SIH Hackathon/lifegrid/data/ambulances.js');
+        const ambPath = path_1.default.resolve(process.cwd(), 'data/ambulances.js');
         if (fs_1.default.existsSync(ambPath)) {
             const ambContent = fs_1.default.readFileSync(ambPath, 'utf-8');
-            // Extract array JSON from JS constant
+            // Extract array from JS constant
             const jsonStart = ambContent.indexOf('[');
             const jsonEnd = ambContent.lastIndexOf(']');
             if (jsonStart !== -1 && jsonEnd !== -1) {
                 const jsonStr = ambContent.substring(jsonStart, jsonEnd + 1);
-                PAN_INDIA_AMBULANCES = JSON.parse(jsonStr);
+                try {
+                    PAN_INDIA_AMBULANCES = JSON.parse(jsonStr);
+                }
+                catch {
+                    // Fallback for JS object literal with unquoted keys
+                    PAN_INDIA_AMBULANCES = new Function(`return ${jsonStr}`)();
+                }
             }
         }
     }
@@ -37,7 +43,7 @@ function loadPanIndiaDataset() {
     }
     try {
         // 2. Load Hospitals from JSON
-        const hospPath = path_1.default.resolve(process.cwd(), 'SIH Hackathon/lifegrid/data/hospitals.json');
+        const hospPath = path_1.default.resolve(process.cwd(), 'data/hospitals.json');
         if (fs_1.default.existsSync(hospPath)) {
             const hospContent = fs_1.default.readFileSync(hospPath, 'utf-8');
             PAN_INDIA_HOSPITALS = JSON.parse(hospContent);

@@ -6,7 +6,8 @@ import dotenv from 'dotenv';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { createApiRouter } from './routes/index.js';
-import { initDatabase } from '../shared/db/index.js';
+import { initDatabase, db } from '../shared/db/index.js';
+import { seedDemoScenario } from '../db/seed/demo.js';
 
 dotenv.config();
 
@@ -26,8 +27,17 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Initialize SQLite DB
+// Initialize SQLite DB & ensure demo state is populated
 initDatabase();
+try {
+  const hospCount = (db.prepare('SELECT count(*) as c FROM hospitals').get() as any)?.c || 0;
+  if (hospCount === 0) {
+    console.log('[LIFEGRID] Database empty — automatically seeding demo hospitals & fleet...');
+    seedDemoScenario();
+  }
+} catch (err) {
+  console.warn('[LIFEGRID] Auto-seed check skipped:', err);
+}
 
 // Mount API Router
 app.use('/api', createApiRouter(io));

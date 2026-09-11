@@ -1,5 +1,5 @@
-import fs from 'fs';
-import path from 'path';
+import fs from "fs";
+import path from "path";
 
 export interface PanIndiaHospitalRecord {
   id: string;
@@ -29,13 +29,13 @@ export interface PanIndiaHospitalRecord {
 export interface PanIndiaAmbulanceRecord {
   id: string;
   name: string;
-  type: 'ALS' | 'BLS' | 'MICU' | 'NEO';
+  type: "ALS" | "BLS" | "MICU" | "NEO";
   type_label: string;
   driver: string;
   driver_phone: string;
   paramedic: string;
   capacity: number;
-  status: 'available' | 'dispatched' | 'en_route' | 'at_scene';
+  status: "available" | "dispatched" | "en_route" | "at_scene";
   lat: number;
   lng: number;
   district: string;
@@ -50,7 +50,10 @@ let PAN_INDIA_HOSPITALS: PanIndiaHospitalRecord[] = [];
 let PAN_INDIA_AMBULANCES: PanIndiaAmbulanceRecord[] = [];
 let isLoaded = false;
 
-export function loadPanIndiaDataset(): { hospitalsCount: number; ambulancesCount: number } {
+export function loadPanIndiaDataset(): {
+  hospitalsCount: number;
+  ambulancesCount: number;
+} {
   if (isLoaded) {
     return {
       hospitalsCount: PAN_INDIA_HOSPITALS.length,
@@ -60,35 +63,40 @@ export function loadPanIndiaDataset(): { hospitalsCount: number; ambulancesCount
 
   try {
     // 1. Load Ambulances
-    const ambPath = path.resolve(process.cwd(), 'SIH Hackathon/lifegrid/data/ambulances.js');
+    const ambPath = path.resolve(process.cwd(), "data/ambulances.js");
     if (fs.existsSync(ambPath)) {
-      const ambContent = fs.readFileSync(ambPath, 'utf-8');
-      // Extract array JSON from JS constant
-      const jsonStart = ambContent.indexOf('[');
-      const jsonEnd = ambContent.lastIndexOf(']');
+      const ambContent = fs.readFileSync(ambPath, "utf-8");
+      // Extract array from JS constant
+      const jsonStart = ambContent.indexOf("[");
+      const jsonEnd = ambContent.lastIndexOf("]");
       if (jsonStart !== -1 && jsonEnd !== -1) {
         const jsonStr = ambContent.substring(jsonStart, jsonEnd + 1);
-        PAN_INDIA_AMBULANCES = JSON.parse(jsonStr);
+        try {
+          PAN_INDIA_AMBULANCES = JSON.parse(jsonStr);
+        } catch {
+          // Fallback for JS object literal with unquoted keys
+          PAN_INDIA_AMBULANCES = new Function(`return ${jsonStr}`)();
+        }
       }
     }
   } catch (err) {
-    console.warn('Could not parse ambulances.js:', err);
+    console.warn("Could not parse ambulances.js:", err);
   }
 
   try {
     // 2. Load Hospitals from JSON
-    const hospPath = path.resolve(process.cwd(), 'SIH Hackathon/lifegrid/data/hospitals.json');
+    const hospPath = path.resolve(process.cwd(), "data/hospitals.json");
     if (fs.existsSync(hospPath)) {
-      const hospContent = fs.readFileSync(hospPath, 'utf-8');
+      const hospContent = fs.readFileSync(hospPath, "utf-8");
       PAN_INDIA_HOSPITALS = JSON.parse(hospContent);
     }
   } catch (err) {
-    console.warn('Could not parse hospitals.json:', err);
+    console.warn("Could not parse hospitals.json:", err);
   }
 
   isLoaded = true;
   console.log(
-    `[LIFEGRID Registry] Indexed ${PAN_INDIA_HOSPITALS.length} Pan-India hospitals and ${PAN_INDIA_AMBULANCES.length} ambulance units.`
+    `[LIFEGRID Registry] Indexed ${PAN_INDIA_HOSPITALS.length} Pan-India hospitals and ${PAN_INDIA_AMBULANCES.length} ambulance units.`,
   );
 
   return {
@@ -112,14 +120,18 @@ export function searchPanIndiaHospitals(query: {
 
   let results = PAN_INDIA_HOSPITALS;
 
-  if (query.state && query.state !== 'all') {
+  if (query.state && query.state !== "all") {
     const qState = query.state.toLowerCase();
-    results = results.filter((h) => (h.state || '').toLowerCase().includes(qState));
+    results = results.filter((h) =>
+      (h.state || "").toLowerCase().includes(qState),
+    );
   }
 
   if (query.district) {
     const qDist = query.district.toLowerCase();
-    results = results.filter((h) => (h.district || '').toLowerCase().includes(qDist));
+    results = results.filter((h) =>
+      (h.district || "").toLowerCase().includes(qDist),
+    );
   }
 
   if (query.has_icu) {
@@ -133,7 +145,7 @@ export function searchPanIndiaHospitals(query: {
   if (query.specialty) {
     const qSpec = query.specialty.toLowerCase();
     results = results.filter((h) =>
-      (h.specialties || []).some((s) => s.toLowerCase().includes(qSpec))
+      (h.specialties || []).some((s) => s.toLowerCase().includes(qSpec)),
     );
   }
 
@@ -141,9 +153,9 @@ export function searchPanIndiaHospitals(query: {
     const s = query.search.toLowerCase();
     results = results.filter(
       (h) =>
-        (h.name || '').toLowerCase().includes(s) ||
-        (h.district || '').toLowerCase().includes(s) ||
-        (h.address || '').toLowerCase().includes(s)
+        (h.name || "").toLowerCase().includes(s) ||
+        (h.district || "").toLowerCase().includes(s) ||
+        (h.address || "").toLowerCase().includes(s),
     );
   }
 
@@ -175,7 +187,7 @@ export function getPanIndiaAmbulances(query?: {
   }
   if (query?.district) {
     list = list.filter(
-      (a) => (a.district || '').toLowerCase() === query.district!.toLowerCase()
+      (a) => (a.district || "").toLowerCase() === query.district!.toLowerCase(),
     );
   }
   return list;

@@ -12,6 +12,7 @@ const dotenv_1 = __importDefault(require("dotenv"));
 const path_1 = __importDefault(require("path"));
 const index_js_1 = require("./routes/index.js");
 const index_js_2 = require("../shared/db/index.js");
+const demo_js_1 = require("../db/seed/demo.js");
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 exports.app = app;
@@ -29,8 +30,18 @@ exports.io = io;
 app.use((0, cors_1.default)());
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
-// Initialize SQLite DB
+// Initialize SQLite DB & ensure demo state is populated
 (0, index_js_2.initDatabase)();
+try {
+    const hospCount = index_js_2.db.prepare('SELECT count(*) as c FROM hospitals').get()?.c || 0;
+    if (hospCount === 0) {
+        console.log('[LIFEGRID] Database empty — automatically seeding demo hospitals & fleet...');
+        (0, demo_js_1.seedDemoScenario)();
+    }
+}
+catch (err) {
+    console.warn('[LIFEGRID] Auto-seed check skipped:', err);
+}
 // Mount API Router
 app.use('/api', (0, index_js_1.createApiRouter)(io));
 // Health check endpoint

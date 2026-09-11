@@ -421,3 +421,56 @@ button:focus-visible {
 .cc-log-table tr:hover td {
   background-color: #f8fafc;
 }
+
+/* ============================================================
+   MAP MARKERS (PAN-INDIA & REGIONAL)
+   ============================================================ */
+.map-marker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
+  font-size: 13px;
+}
+
+.map-marker:hover {
+  transform: scale(1.22);
+  z-index: 1000 !important;
+}
+
+.map-marker--green {
+  background: #16a34a;
+  color: #ffffff;
+  box-shadow: 0 0 10px rgba(22, 163, 74, 0.6);
+}
+
+.map-marker--red {
+  background: #dc2626;
+  color: #ffffff;
+  box-shadow: 0 0 10px rgba(220, 38, 38, 0.6);
+}
+
+.map-marker--blue {
+  background: #2563eb;
+  color: #ffffff;
+  box-shadow: 0 0 10px rgba(37, 99, 235, 0.6);
+}
+
+.map-marker--teal {
+  background: #0d9488;
+  color: #ffffff;
+  box-shadow: 0 0 10px rgba(13, 148, 136, 0.6);
+}
+
+.map-marker--orange {
+  background: #ea580c;
+  color: #ffffff;
+  box-shadow: 0 0 10px rgba(234, 88, 12, 0.6);
+}
+

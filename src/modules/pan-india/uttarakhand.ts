@@ -96,7 +96,7 @@ export function estimateEtaMinutes(distKm: number, isEmergency = true): number {
 
 // 1. Parse Uttarakhand GeoJSON
 export function loadUttarakhandHospitalsFromGeoJSON(): UttarakhandHospital[] {
-  const geojsonPath = path.resolve(process.cwd(), 'SIH Hackathon/export.geojson');
+  const geojsonPath = path.resolve(process.cwd(), 'data/export.geojson');
   if (!fs.existsSync(geojsonPath)) {
     console.warn('[Uttarakhand] GeoJSON file not found at:', geojsonPath);
     return [];

@@ -257,25 +257,18 @@ export const ControlCenter: React.FC<ControlCenterProps> = ({
 
     // 1. Facility Markers (Hospitals)
     hospitals.forEach((h: any) => {
-      let bgCol = '#15803d'; // green PHC
-      let symbol = 'H';
-      if (h.tier === 'district_hospital') {
-        bgCol = '#1e40af'; // blue district
-        symbol = '🏥';
-      } else if (h.tier === 'rural_hospital') {
-        bgCol = '#0d9488'; // teal rural
-        symbol = '⚕';
-      }
+      const isDistrict = h.tier === 'district_hospital';
+      const colorClass = isDistrict ? 'map-marker--blue' : 'map-marker--teal';
 
       const icon = L.divIcon({
-        className: 'facility-marker-icon',
+        className: '',
         html: `
-          <div style="background-color: ${bgCol}; width: 28px; height: 28px; border-radius: 6px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; border: 2px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.25); cursor: pointer;" title="${h.name}">
-            <span style="font-size: 12px;">${symbol}</span>
+          <div class="map-marker ${colorClass}" title="${h.name}">
+            <i class="fa-solid fa-hospital"></i>
           </div>
         `,
-        iconSize: [28, 28],
-        iconAnchor: [14, 14],
+        iconSize: [32, 32],
+        iconAnchor: [16, 16],
       });
 
       const marker = L.marker([h.location.latitude, h.location.longitude], { icon })
@@ -301,18 +294,15 @@ export const ControlCenter: React.FC<ControlCenterProps> = ({
 
     // 2. Incident Markers
     incidents.forEach((inc: any) => {
-      let pColor = '#b91c1c';
-      if (inc.status === 'resolved') pColor = '#64748b';
-
       const icon = L.divIcon({
-        className: 'incident-marker-icon',
+        className: '',
         html: `
-          <div style="background-color: ${pColor}; width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; border: 2px solid white; box-shadow: 0 0 8px ${pColor}; cursor: pointer;" title="Incident #${inc.id.slice(0, 6)}">
-            <span style="font-size: 11px; font-weight: bold;">!</span>
+          <div class="map-marker map-marker--orange" title="Incident #${inc.id.slice(0, 6)}">
+            <i class="fa-solid fa-circle-exclamation"></i>
           </div>
         `,
-        iconSize: [26, 26],
-        iconAnchor: [13, 13],
+        iconSize: [28, 28],
+        iconAnchor: [14, 14],
       });
 
       const marker = L.marker([inc.location.latitude, inc.location.longitude], { icon })
@@ -335,15 +325,17 @@ export const ControlCenter: React.FC<ControlCenterProps> = ({
     // 3. Ambulances
     ambulances.forEach((amb: any) => {
       const isAvailable = amb.status === 'available';
+      const colorClass = isAvailable ? 'map-marker--green' : 'map-marker--red';
+
       const icon = L.divIcon({
-        className: 'ambulance-marker-icon',
+        className: '',
         html: `
-          <div style="width: 28px; height: 28px; background-color: ${isAvailable ? '#0284c7' : '#ea580c'}; border-radius: 6px; display: flex; align-items: center; justify-content: center; color: white; border: 2px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.3); cursor: pointer;" title="${amb.vehicle_number}">
-            <span style="font-size: 12px;">🚑</span>
+          <div class="map-marker ${colorClass}" title="${amb.vehicle_number}">
+            <i class="fa-solid fa-truck-medical"></i>
           </div>
         `,
-        iconSize: [28, 28],
-        iconAnchor: [14, 14],
+        iconSize: [32, 32],
+        iconAnchor: [16, 16],
       });
 
       const marker = L.marker([amb.current_location.latitude, amb.current_location.longitude], { icon })
