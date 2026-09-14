@@ -1,21 +1,21 @@
 {
   "name": "sih_lifegrid",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "LIFEGRID — Rural Healthcare Accessibility & Emergency Coordination Engine",
+  "main": "src/api/server.js",
+  "type": "module",
   "directories": {
     "doc": "docs"
   },
   "scripts": {
-    "dev": "tsx watch src/api/server.ts",
-    "build": "tsc",
-    "seed:demo": "tsx src/db/seed/demo.ts",
-    "test": "tsx test/verify.ts"
+    "dev": "node --watch src/api/server.js",
+    "start": "node src/api/server.js",
+    "seed:demo": "node src/db/seed/demo.js",
+    "test": "node test/verify.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
   "dependencies": {
     "bcryptjs": "^3.0.3",
     "better-sqlite3": "^13.0.3",
@@ -25,16 +25,5 @@
     "jsonwebtoken": "^9.0.3",
     "socket.io": "^4.8.3",
     "uuid": "^14.0.2"
-  },
-  "devDependencies": {
-    "@types/bcryptjs": "^2.4.6",
-    "@types/better-sqlite3": "^9.6.0",
-    "@types/cors": "^2.8.19",
-    "@types/express": "^5.0.6",
-    "@types/jsonwebtoken": "^9.0.10",
-    "@types/node": "^26.4.1",
-    "@types/uuid": "^10.0.0",
-    "tsx": "^4.23.13",
-    "typescript": "^7.0.2"
   }
 }

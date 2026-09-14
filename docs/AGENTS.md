@@ -59,7 +59,7 @@ If you find yourself installing an SDK for any of the above, stop — that's a s
 Modular monolith — one deployable, hard boundaries in code. Mirror the module list in ARCHITECTURE.md §1 directly:
 
 ```
-/src
+/src                     # Node.js + Express backend, plain JavaScript
   /modules
     /intake            # Emergency Intake
     /triage             # Digital Triage (AI) — shared by both paths
@@ -76,10 +76,11 @@ Modular monolith — one deployable, hard boundaries in code. Mirror the module 
     /rbac                # role/permission checks, ARCHITECTURE.md §8 matrix
   /api                  # route handlers, thin — delegate to /modules
   /db                   # migrations, seed scripts
-/client                 # React/TS frontend
-  /screens
-  /components
-  /i18n
+/client                 # Vanilla HTML/CSS/JS frontend — no framework, no build step
+  /pages                # one .html entry point per screen (ARCHITECTURE.md §7 use cases / DESIGN.md §3 screens)
+  /scripts               # plain .js modules (ES modules via <script type="module">), one per page plus /shared for fetch/socket helpers
+  /styles                 # shared CSS (design tokens from DESIGN.md §1 as CSS variables) + per-page stylesheets
+  /i18n                   # JSON string tables per language, loaded at runtime — see ARCHITECTURE.md §8 multilingual approach
 ```
 
 Rules:
@@ -87,6 +88,7 @@ Rules:
 - Dashboard imports read-only query functions from other modules; it never imports their write paths.
 - Anything that writes to `AuditLog` goes through `/shared/audit`, not ad hoc inserts, so the "every AI decision is logged" guardrail is enforced in one place instead of trusted per-caller.
 - Seed data lives in `/db/seed`, organized per scenario (see demo bar below), not as one undifferentiated fixture dump.
+- Whole stack is plain JavaScript — no `.ts`/`.tsx` anywhere, no compile step, no build tooling on either side (ARCHITECTURE.md §2: chosen so freshers/non-coders on the team can read any file without extra syntax to learn). Backend and frontend stay decoupled the same way regardless — pass plain JSON over the API/WebSocket boundary rather than trying to "share" a model definition between them. If the same shape (e.g. the triage trace, §4) is needed on both sides, define it once in `/src/shared/models` as the source of truth (with a comment describing its fields, since there's no type system to enforce them) and treat the frontend's copy as plain JSON it trusts the backend to send correctly.
 
 ---
 

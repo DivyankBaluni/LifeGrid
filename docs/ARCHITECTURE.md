@@ -49,10 +49,10 @@ Rules:
 
 | Layer | Choice | Why (tied to PRD) |
 |---|---|---|
-| Frontend | React + TypeScript | Dashboard and multi-screen citizen/hospital UI (PRD: live dashboard, multilingual UI) need componentized state, not template rendering |
-| Backend | Node.js (Express or Fastify) | One language across stack lowers hackathon context-switching cost; async I/O suits real-time alert fan-out |
+| Frontend | Vanilla HTML/CSS/JS (no framework) | Matches actual team skillset — no React/TS on the frontend team; ES modules + a small set of hand-rolled render functions keep the multi-screen citizen/hospital UI (PRD: live dashboard, multilingual UI) manageable without a build step to debug under time pressure |
+| Backend | Node.js + Express, plain JavaScript (no TypeScript) | Matches actual team skillset — freshers/non-coders can read `.js` files with no compile step, no type syntax, no build tooling to debug; keeps the whole stack (frontend + backend) in one familiar language |
 | Database | PostgreSQL | Relational integrity for Incident/Patient/Referral/AuditLog relationships (§3); JSONB columns absorb the AI explainability trace without a schema migration per triage rule change |
-| Real-time layer | WebSockets (Socket.IO) | Dashboard needs near-real-time incident/alert push (PRD: "near real time" triage-to-dispatch) without client polling |
+| Real-time layer | WebSockets (Socket.IO) | Dashboard needs near-real-time incident/alert push (PRD: "near real time" triage-to-dispatch) without client polling; Socket.IO ships a plain-JS client, so this works unchanged with a vanilla frontend — no framework binding required |
 | Mapping | Leaflet + OpenStreetMap tiles | No API key friction, no cost ceiling during a demo; sufficient for simulated routes and the accessibility map |
 | AI/Triage | Rule-engine + LLM-assisted explanation layer (see §4) | PRD Safety: output must be explainable/traceable — a rule engine is auditable by construction; LLM is used to phrase the trace, not to decide the score |
 | Auth | JWT + role claims | Backs the RBAC matrix (§8) without a separate identity service |
